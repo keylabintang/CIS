@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id_prestasi');
             $table->string('nama', 199);
             $table->string('keterangan', 299);
+            $table->text('foto');
             $table->timestamps();
         });
     }

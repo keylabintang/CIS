@@ -162,46 +162,6 @@
         <!-- Front -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Front</span></li>
 
-        <!-- Main Banner -->
-        <li class="menu-item {{ Request::is('admin/banner*') ? 'active open' : '' }}">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Main Banner">Main Banner</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('admin/banner') ? 'active' : '' }}">
-                    <a href="/admin/banner" class="menu-link">
-                        <div data-i18n="Daftar">Daftar</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('admin/banner/create') ? 'active' : '' }}">
-                    <a href="{{ route('banner.create') }}" class="menu-link">
-                        <div data-i18n="Tambah">Tambah</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- Tentang Kami -->
-        <li class="menu-item {{ Request::is('admin/tentang*') ? 'active open' : '' }}">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Tentang Kami">Tentang Kami</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('admin/tentang') ? 'active' : '' }}">
-                    <a href="/admin/tentang" class="menu-link">
-                        <div data-i18n="Daftar">Daftar</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('admin/tentang/create') ? 'active' : '' }}">
-                    <a href="{{ route('tentang.create') }}" class="menu-link">
-                        <div data-i18n="Tambah">Tambah</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
         <!-- Prestasi -->
         <li class="menu-item {{ Request::is('admin/prestasi*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -236,46 +196,6 @@
                 </li>
                 <li class="menu-item {{ Request::is('admin/pelatih/create') ? 'active' : '' }}">
                     <a href="{{ route('pelatih.create') }}" class="menu-link">
-                        <div data-i18n="Tambah">Tambah</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- FAQ -->
-        <li class="menu-item {{ Request::is('admin/faq*') ? 'active open' : '' }}">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="FAQ">FAQ</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('admin/faq') ? 'active' : '' }}">
-                    <a href="/admin/faq" class="menu-link">
-                        <div data-i18n="Daftar">Daftar</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('admin/faq/create') ? 'active' : '' }}">
-                    <a href="{{ route('faq.create') }}" class="menu-link">
-                        <div data-i18n="Tambah">Tambah</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- Kontak Kami -->
-        <li class="menu-item mb-5 {{ Request::is('admin/kontak*') ? 'active open' : '' }}">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Kontak Kami">Kontak Kami</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('admin/kontak') ? 'active' : '' }}">
-                    <a href="/admin/kontak" class="menu-link">
-                        <div data-i18n="Daftar">Daftar</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('admin/kontak/create') ? 'active' : '' }}">
-                    <a href="{{ route('kontak.create') }}" class="menu-link">
                         <div data-i18n="Tambah">Tambah</div>
                     </a>
                 </li>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Cirebon Inline Skate" />
-    <meta name="author" content="@ferdiananta5 & @handikafdl" />
+    <meta name="author" content="@keyla & @firli" />
     <title>Cirebon Inline Skate</title>
 
     <!-- Icon Tabs -->
@@ -99,7 +99,7 @@
                 <p>Salah Satu Club Sepaturoda di Indonesia yang Berdomisili di Cirebon. Ayo Gabung Bersama Kami!</p>
                 <div class="down-buttons">
                   <div class="main-blue-button">
-                    <a href="#">Daftar Sekarang!</a>
+                    <a href="/pendaftaran">Daftar Sekarang!</a>
                   </div>
                 </div>
               </div>
@@ -198,47 +198,22 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="owl-carousel owl-services wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+              @foreach($prestasi as $prs)
               <div class="item">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <div class="img-offset">
                     <img src="{{ asset('assets_landing/images/awards.svg') }}" alt="icon awards" />
                   </div>
                   <div class="img-thumb">
-                    <img src="{{ asset('assets_landing/images/prestasi/contoh.jpg') }}" alt="foto profil" />
+                    <img src="{{ asset('images/'.$prs->foto) }}" alt="foto profil" />
                   </div>
-                  <h4>Hilal Satria Kamal</h4>
+                  <h4>{{ $prs->nama }}</h4>
                   <ol class="list-medal">
-                    <li>1 Gold Medal</li>
-                    <li>2 Silver Medal</li>
+                    {{ $prs->keterangan }}
                   </ol>
                 </a>
               </div>
-              <div class="item">
-                <div class="img-offset">
-                  <img src="{{ asset('assets_landing/images/awards.svg') }}" alt="icon awards" />
-                </div>
-                <div class="img-thumb">
-                  <img src="{{ asset('assets_landing/images/prestasi/contoh.jpg') }}" alt="foto profil" />
-                </div>
-                <h4>Hilal Satria Kamal</h4>
-                <ol class="list-medal">
-                  <li>1 Gold Medal</li>
-                  <li>2 Silver Medal</li>
-                </ol>
-              </div>
-              <div class="item">
-                <div class="img-offset">
-                  <img src="{{ asset('assets_landing/images/awards.svg') }}" alt="icon awards" />
-                </div>
-                <div class="img-thumb">
-                  <img src="{{ asset('assets_landing/images/prestasi/contoh.jpg') }}" alt="foto profil" />
-                </div>
-                <h4>Hilal Satria Kamal</h4>
-                <ol class="list-medal">
-                  <li>1 Gold Medal</li>
-                  <li>2 Silver Medal</li>
-                </ol>
-              </div>
+              @endforeach
             </div>
           </div>
         </div>
@@ -406,42 +381,20 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="owl-carousel owl-portfolio wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+              @foreach ($pelatih as $pl)
               <div class="item">
                 <div class="thumb">
-                  <img src="{{ asset('assets_landing/images/coach-1.jpg') }}" alt="profil coach" />
+                  <img src="{{ asset('images/'.$pl->foto) }}" alt="profil coach" />
                   <div class="hover-effect">
                     <div class="inner-content">
-                      <h4>Keyla Bintang</h4>
-                      <h5>~ Coach Frestyle</h5>
-                      <h6><a href="#">@keybin</a></h6>
+                      <h4>{{ $pl->nama }}</h4>
+                      <h5>~ {{ $pl->keterangan }}</h5>
+                      <h6><a href="#">@ {{ $pl->ig }}</a></h6>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="thumb">
-                  <img src="{{ asset('assets_landing/images/coach-1.jpg') }}" alt="profil coach" />
-                  <div class="hover-effect">
-                    <div class="inner-content">
-                      <h4>Keyla Bintang</h4>
-                      <h5>~ Coach Frestyle</h5>
-                      <h6><a href="#">@keybin</a></h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="thumb">
-                  <img src="{{ asset('assets_landing/images/coach-1.jpg') }}" alt="profil coach" />
-                  <div class="hover-effect">
-                    <div class="inner-content">
-                      <h4>Keyla Bintang</h4>
-                      <h5>~ Coach Frestyle</h5>
-                      <h6><a href="#">@keybin</a></h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              @endforeach
             </div>
           </div>
         </div>
@@ -458,7 +411,7 @@
                 <div class="col-lg-10 offset-lg-1">
                   <h2 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">Ayo Daftarkan Diri Anda Sekarang!</h2>
                   <div class="main-blue-button d-flex justify-content-center pt-2 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <a href="#login">Daftar Sekarang!</a>
+                    <a href="/pendaftaran">Daftar Sekarang!</a>
                   </div>
                 </div>
               </div>

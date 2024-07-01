@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -46,14 +47,29 @@ class PrestasiController extends Controller
             [
                 'nama' => 'required',
                 'keterangan' => 'required',
+                'foto' => 'required',
+                'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
             ],
             [
                 'nama.required' => 'Nama harus diisi',
                 'keterangan.required' => 'Keterangan harus diisi',
+                'foto.required' => 'Foto harus diisi',
+                'foto.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
             ]
         );
 
-        Prestasi::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile("foto")) {
+
+            $image = $request->file("foto");
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $data["foto"] = "$profileImage";
+        }
+
+        Prestasi::create($data);
 
         Alert::success('Data Prestasi', 'Berhasil Ditambahkan!');
         return redirect('/admin/prestasi');
@@ -90,14 +106,32 @@ class PrestasiController extends Controller
             [
                 'nama' => 'required',
                 'keterangan' => 'required',
+                'foto' => 'required',
+                'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
             ],
             [
                 'nama.required' => 'Nama harus diisi',
                 'keterangan.required' => 'Keterangan harus diisi',
+                'foto.required' => 'Foto harus diisi',
+                'foto.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
             ]
         );
 
-        $prestasi->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile("foto")) {
+            File::delete('images/' . $prestasi->foto);
+
+            $image = $request->file("foto");
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $data["foto"] = "$profileImage";
+        } else {
+            unset($data["foto"]);
+        }
+
+        $prestasi->update($data);
 
         Alert::success('Data Prestasi', 'Berhasil Diubah!');
         return redirect('/admin/prestasi');
@@ -108,6 +142,7 @@ class PrestasiController extends Controller
      */
     public function destroy(Prestasi $prestasi)
     {
+        File::delete('images/' . $prestasi->foto);
         $prestasi->delete();
 
         Alert::success('Data Prestasi', 'Berhasil dihapus!');

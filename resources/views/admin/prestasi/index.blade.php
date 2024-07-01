@@ -17,6 +17,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Foto</th>
                         <th>Nama</th>
                         <th>Keterangan</th>
                         <th>Action</th>
@@ -26,6 +27,9 @@
                     @foreach ($data as $dt)
                         <tr>
                             <td>{{ $loop->index + 1 }}. </td>
+                            <td>
+                                <img src="{{ asset('images/'.$dt->foto) }}" alt="foto diri" width="45">
+                            </td>
                             <td>{{ $dt->nama }}</td>
                             <td>{{ $dt->keterangan }}</td>
                             <td>
