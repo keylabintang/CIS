@@ -27,6 +27,14 @@ use App\Http\Controllers\AbsensiController;
 |
 */
 
+Route::get("/", function() {
+    return view("welcome");
+})->middleware("auth");
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->middleware("auth");
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/pendaftaran', function () {
@@ -36,6 +44,11 @@ Route::get('/pendaftaran', function () {
 // Admin
 Route::get('/admin', function () {
     return view('admin.home-admin');
+});
+
+// Member
+Route::get('/member', function () {
+    return view('member.home-member');
 });
 
 Route::resource('/admin/pendaftaran', PendaftaranController::class);
@@ -78,3 +91,8 @@ Route::prefix('/user')->group(function () {
     return view('user.home-user');
 });
 });
+
+Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
+
