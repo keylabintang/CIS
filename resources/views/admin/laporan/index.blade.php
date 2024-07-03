@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{ $loop->index + 1 }}. </td>
                             <td>{{ $dt->nama }}</td>
-                            <td>{{ \Carbon\Carbon::parse($dt->tanggal)->translatedFormat('l, d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($dt->bulan)->translatedFormat('l, d F Y') }}</td>
                             <td>{{ $dt->kompetensi }}</td>
                             <td>{{ $dt->catatan }}</td>
                             <td>
@@ -43,8 +43,7 @@
                                             <i class="bx bx-edit-alt me-1"></i>
                                             Edit
                                         </a>
-
-                                        <form action="" method="POST">
+                                        <form action="{{ route('laporan.destroy', $dt->id_laporan) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item"

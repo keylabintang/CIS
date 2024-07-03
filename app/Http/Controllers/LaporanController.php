@@ -15,7 +15,7 @@ class LaporanController extends Controller
         $data = Laporan::orderBy('id_laporan', 'asc')->get();
 
 
-        
+
         return view('admin.laporan.index', compact('judul', 'data'));
     }
 
@@ -56,6 +56,13 @@ class LaporanController extends Controller
         Laporan::create($data);
 
         Alert::success('Data Laporan', 'Berhasil ditambahkan!');
+        return redirect('/admin/laporan');
+    }
+
+    public function destroy(Laporan $laporan)
+    {
+        $laporan->delete();
+        Alert::success('Data Laporan', 'Berhasil dihapus!!');
         return redirect('/admin/laporan');
     }
 }

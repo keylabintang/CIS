@@ -27,7 +27,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get("/", function() {
+Route::get("/", function () {
     return view("welcome");
 })->middleware("auth");
 
@@ -76,18 +76,15 @@ Route::resource('/admin/biaya', BiayaController::class);
 
 Route::resource('/admin/prestasi', PrestasiController::class);
 
-//laporan
 Route::resource('/admin/laporan', LaporanController::class);
-Route::delete('/admin/laporan/{laporan}', [LaporanController::class, 'destroy'])->name('admin.laporan.destroy');
 
 // User
 Route::prefix('/user')->group(function () {
     Route::get('/', function () {
-    return view('user.home-user');
-});
+        return view('user.home-user');
+    });
 });
 
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
-

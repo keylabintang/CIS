@@ -17,7 +17,7 @@
             </div>
             <div class="card-body">
             {{-- <form action="{{ route('admin.member.store') }}" method="POST"> --}}
-                <form action="/admin/laporan" method="POST">
+                <form action="{{ route('laporan.store') }}" method="POST">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="nama">Nama</label>
@@ -46,10 +46,10 @@
                         <label class="col-sm-2 col-form-label" for="tanggal">Tanggal</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="date" class="form-control @error('tanggal') border-danger @enderror"
-                                    id="tanggal" name="tanggal" value="{{ old('tanggal') }}" />
+                                <input type="date" class="form-control @error('bulan') border-danger @enderror"
+                                    id="bulan" name="bulan" value="{{ old('bulan') }}" />
                             </div>
-                            @error('tanggal')
+                            @error('bulan')
                                 <div class="form-text text-danger">
                                     *{{ $message }}
                                 </div>
@@ -74,10 +74,10 @@
                         <label class="col-sm-2 col-form-label" for="keterangan">Koeterangan</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <textarea type="text" class="form-control @error('keterangan') border-danger @enderror" id="keterangan"
-                                    name="keterangan" rows="3">{{ old('keterangan') }}</textarea>
+                                <textarea type="text" class="form-control @error('catatan') border-danger @enderror" id="catatan"
+                                    name="catatan" rows="3">{{ old('catatan') }}</textarea>
                             </div>
-                            @error('keterangan')
+                            @error('catatan')
                                 <div class="form-text text-danger">
                                     *{{ $message }}
                                 </div>
