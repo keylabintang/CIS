@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller 
 {
 	public function index(){
-		return view('login/login', ['title' => 'login']);
+		return view('login', ['title' => 'login']);
 	}
 
 	public function authenticate(Request $request){
@@ -18,7 +18,7 @@ class UserController extends Controller
 		]);
 		if(Auth::attempt($credential)){
 			$request->session()->regenerate();
-			return redirect()->intended('welcome');
+			return redirect()->intended('admin/home-admin');
 		}
 
 		return back()->with('loginError','Login Failed');

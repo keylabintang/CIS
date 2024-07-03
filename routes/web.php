@@ -28,11 +28,11 @@ use App\Http\Controllers\AbsensiController;
 */
 
 Route::get("/", function() {
-    return view("welcome");
+    return view("home-admin");
 })->middleware("auth");
 
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/home-admin', function () {
+    return view('home-admin');
 })->middleware("auth");
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -95,4 +95,3 @@ Route::prefix('/user')->group(function () {
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
-
