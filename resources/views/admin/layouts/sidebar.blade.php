@@ -139,6 +139,26 @@
             </ul>
         </li>
 
+        <!-- Laporan -->
+        <li class="menu-item {{ Request::is('admin/laporan*') ? 'active open' : '' }}">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="SPP">Laporan Bulanan</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('admin/laporan') ? 'active' : '' }}">
+                    <a href="/admin/laporan" class="menu-link">
+                        <div data-i18n="Daftar">Daftar</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('admin/laporan/create') ? 'active' : '' }}">
+                    <a href="{{ route('laporan.create') }}" class="menu-link">
+                        <div data-i18n="Tambah">Tambah</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <!-- SPP -->
         <li class="menu-item {{ Request::is('admin/biaya*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">

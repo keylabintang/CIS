@@ -1,20 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\KontakController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PelatihController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProgramController;
-use App\Http\Controllers\TentangController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\UserController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,16 +74,11 @@ Route::resource('/admin/event', EventController::class);
 
 Route::resource('/admin/biaya', BiayaController::class);
 
-Route::resource('/admin/banner', BannerController::class);
-
-Route::resource('/admin/tentang', TentangController::class);
-
 Route::resource('/admin/prestasi', PrestasiController::class);
 
-Route::resource('/admin/faq', FaqController::class);
-
-Route::resource('/admin/kontak', KontakController::class);
-
+//laporan
+Route::resource('/admin/laporan', LaporanController::class);
+Route::delete('/admin/laporan/{laporan}', [LaporanController::class, 'destroy'])->name('admin.laporan.destroy');
 
 // User
 Route::prefix('/user')->group(function () {

@@ -57,6 +57,25 @@
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label for="level" class="col-sm-2 col-form-label">Jenis Pembayaran</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="form-select @error('jenis_pembayaran') border-danger @enderror" id="jenis_pembayaran"
+                                    aria-label="Example select with button addon" name="jenis_pembayaran">
+                                    <option selected>Pilih Jenis Pembayaran</option>
+                                    <option value="spp">SPP</option>
+                                    <option value="jersey">Jersey</option>
+                                    <option value="pendaftaran lomba">Pendaftaran Lomba</option>
+                                </select>
+                            </div>
+                            @error('jenis_pembayaran')
+                                <div class="form-text text-danger">
+                                    *{{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="level" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-4">
                             <div class="input-group">
@@ -74,6 +93,22 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="bukti">Bukti Pembayaran</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input type="file" id="bukti" class="form-control @error('foto') border-danger @enderror" name="bukti" value="{{ old('bukti') }}" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                            </div>
+                            @error('bukti')
+                                <div class="form-text text-danger">
+                                    *{{ $message }}
+                                </div>
+                            @enderror
+                            <div class="img-output mt-3 d-flex justify-content-center">
+                                <img src="" id="output" width="280">
+                            </div>
+                        </div>
+                    </div>
                     <div class="row justify-content-end mt-4">
                         <div class="col-sm-10">
                             <a href="/admin/biaya">
@@ -87,4 +122,9 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('bukti').addEventListener('change', function() {
+            document.getElementById('hilang').style.display = 'none';
+        });
+    </script>
 @endsection

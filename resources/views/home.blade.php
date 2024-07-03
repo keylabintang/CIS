@@ -506,44 +506,18 @@
     <!-- ***** FAQ Area End ***** -->
 
     <!-- ***** Kontak Kami Area Start ***** -->
+  
     <div id="kontak-kami" class="kontak section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7">
+          <div class="col-lg-7 offset-lg-3">
             <div class="section-heading">
-              <h2 class="wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.3s">Bisa Hubungi <em>Kontak</em> <span>Kami</span> Di Bawah Ini</h2>
-              <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" id="map">
+              <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">Bisa Hubungi <em>Kontak</em> <span>Kami</span> Di Bawah Ini</h2>
+              <div class="row justify-content-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" id="map">
                 <iframe title="Living Plaza Cirebon" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.295639635649!2d108.53865760959792!3d-6.7337409932343055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1df3f489b31b%3A0xf4e4679358864c50!2sLiving%20Plaza%20Cirebon!5e0!3m2!1sid!2sid!4v1697901277879!5m2!1sid!2sid" width="100%" height="360px" style="border: 0" allowfullscreen=""></iframe>
               </div>
             </div>
           </div>
-          <div class="col-lg-5 align-self-center mt-md-5 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-            <form id="contact" action="" method="post">
-              <div class="row">
-                <div class="col-lg-12">
-                  <legend>
-                    <input type="name" name="name" id="name" placeholder="Nama" autocomplete="off" required />
-                  </legend>
-                </div>
-                <div class="col-lg-12">
-                  <legend>
-                    <input type="surname" name="surname" id="surname" placeholder="Nomor Whatsapp" autocomplete="off" required />
-                  </legend>
-                </div>
-                <div class="col-lg-12">
-                  <legend>
-                    <textarea type="text" name="website" id="website" placeholder="Tuliskan Pesan Disini" required autocomplete="off"></textarea>
-                  </legend>
-                </div>
-                <div class="col-lg-12">
-                  <legend>
-                    <button type="submit" id="form-submit" class="main-button">Kirim</button>
-                  </legend>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
         <div class="row">
           <div class="info mt-5 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
             <span>
@@ -663,40 +637,6 @@
       </div>
     </footer>
     <!-- ***** Footer Area End ***** -->
-
-    <!-- Your HTML content -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Detail Prestasi</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item list-group-item-action">
-                <div class="row">
-                  <div class="col-lg-3 nama">Nama :</div>
-                  <div class="col-lg-9 align-self-start ket">Mohamad Handika Nurfadli</div>
-                </div>
-              </li>
-              <li class="list-group-item list-group-item-action">
-                <div class="row">
-                  <div class="col-lg-3 nama">Prestasi :</div>
-                  <div class="col-lg-9 ket">
-                    <ul class="list-prestasi">
-                      <li class="">Bronze Medal Battle Slide Senior Women Prambanan Roller Sport tingkat Nasional 2022</li>
-                      <li class="">Bronze Medal Battle Slide Senior Women Prambanan Roller Sport tingkat Nasional 2022</li>
-                      <li class="">Bronze Medal Battle Slide Senior Women Prambanan Roller Sport tingkat Nasional 2022</li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('assets_landing/vendor/jquery/jquery.min.js') }}"></script>

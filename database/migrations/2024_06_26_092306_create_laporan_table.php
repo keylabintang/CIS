@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->increments('id_laporan');
-            $table->integer('id_member');
+            $table->string('nama',200);
             $table->string('level',199);
             $table->date('bulan');
             $table->string('kompetensi', 199);

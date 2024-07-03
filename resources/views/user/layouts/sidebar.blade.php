@@ -54,6 +54,14 @@
             </a>
         </li>
 
+        <!-- Laporan -->
+        <li class="menu-item {{ Request::is('user/laporan*') ? 'active' : '' }}">
+            <a href="/user/laporan" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Laporan">Laporan</div>
+            </a>
+        </li>
+
         <!-- SPP -->
         <li class="menu-item {{ Request::is('user/biaya*') ? 'active' : '' }}">
             <a href="/user/biaya" class="menu-link">
