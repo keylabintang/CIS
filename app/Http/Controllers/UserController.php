@@ -18,7 +18,7 @@ class UserController extends Controller
 		]);
 		if(Auth::attempt($credential)){
 			$request->session()->regenerate();
-			return redirect()->intended('admin/home-admin');
+			return redirect()->intended('/admin/admin.home-admin');
 		}
 
 		return back()->with('loginError','Login Failed');

@@ -15,6 +15,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,19 @@ use App\Http\Controllers\AbsensiController;
 */
 
 Route::get("/", function() {
-    return view("home-admin");
+    return view("welcome");
 })->middleware("auth");
 
-Route::get('/home-admin', function () {
-    return view('home-admin');
+Route::get('/welcome', function () {
+    return view('welcome');
 })->middleware("auth");
+
+Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
+Route::fallback(function () {
+    return redirect()->route('login')->with('loginError', 'Login Failed');
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -84,6 +92,15 @@ Route::resource('/admin/faq', FaqController::class);
 
 Route::resource('/admin/kontak', KontakController::class);
 
+// Member
+
+Route::resource('/member/profil', ProfilController::class);
+
+Route::resource('/member/jadwal', JadwalController::class);
+
+Route::resource('/member/program', ProgramController::class);
+
+Route::resource('/member/event', EventController::class);
 
 // User
 Route::prefix('/user')->group(function () {
@@ -91,7 +108,3 @@ Route::prefix('/user')->group(function () {
     return view('user.home-user');
 });
 });
-
-Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
-Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
-Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
