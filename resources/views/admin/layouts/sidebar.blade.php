@@ -20,14 +20,6 @@
             </a>
         </li>
 
-        <!-- Absensi -->
-        <li class="menu-item {{ Request::is('admin/absensi*') ? 'active' : '' }}">
-            <a href="/admin/absensi" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Absensi">Absensi</div>
-            </a>
-        </li>
-
         <!-- Pendaftaran -->
         <li class="menu-item {{ Request::is('admin/pendaftaran*') ? 'active' : '' }}">
             <a href="/admin/pendaftaran" class="menu-link">
@@ -73,26 +65,6 @@
                 </li>
                 <li class="menu-item {{ Request::is('admin/jadwal/create') ? 'active' : '' }}">
                     <a href="{{ route('jadwal.create') }}" class="menu-link">
-                        <div data-i18n="Tambah">Tambah</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- Absensi -->
-        <li class="menu-item {{ Request::is('admin/absensi*') ? 'active open' : '' }}">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Absensi">Absensi</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('admin/absensi') ? 'active' : '' }}">
-                    <a href="/admin/absensi" class="menu-link">
-                        <div data-i18n="Daftar">Daftar</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('admin/absensi/create') ? 'active' : '' }}">
-                    <a href="{{ route('absensi.create') }}" class="menu-link">
                         <div data-i18n="Tambah">Tambah</div>
                     </a>
                 </li>

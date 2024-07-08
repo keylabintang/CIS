@@ -17,6 +17,7 @@
                 <thead>
                     <tr>
                         <th>No.</th>
+                        <th>Foto</th>
                         <th>Nama</th>
                         <th>Umur</th>
                         <th>Orang Tua</th>
@@ -30,6 +31,9 @@
                     @foreach ($data as $dt)
                         <tr>
                             <td>{{ $loop->iteration }}. </td>
+                            <td>
+                                <img src="{{ asset('images/'.$dt->foto) }}" alt="foto" width="45">
+                            </td>
                             <td>{{ $dt->nama_anak }}</td>
                             <td>{{ $dt->umur }} Tahun</td>
                             <td>{{ $dt->nama_ortu }}</td>
@@ -66,7 +70,7 @@
     </div>
 
     @foreach ($data as $dt)
-      @include('admin.member.detail')
+    @include('admin.member.detail')
     @endforeach
     
 @endsection

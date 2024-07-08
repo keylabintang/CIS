@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Biaya;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\File;
 
 class BiayaController extends Controller
 {
@@ -17,7 +19,7 @@ class BiayaController extends Controller
         $data = Biaya::orderBy('id_biaya', 'asc')->get();
 
 
-        
+
         return view('admin.biaya.index', compact('judul', 'data'));
     }
 
@@ -46,35 +48,26 @@ class BiayaController extends Controller
             'tanggal' => 'required',
             'jenis_pembayaran' => 'required',
             'keterangan' => 'required',
-            'bukti' => 'required',
+            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
         ], [
             'nama.required' => 'Nama wajib diisi',
             'tanggal.required' => 'Tanggal wajib diisi',
             'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
             'keterangan.required' => 'Keterangan wajib diisi',
-            'bukti.required' => 'Keterangan wajib diisi',
+            'bukti.required' => 'Bukti wajib diisi',
 
         ]);
 
-        if ($request->hasFile("bukti")) {
+        $input = $request->all();
 
-            $image = $request->file("bukti");
+        if ($image = $request->file("bukti")) {
             $destinationPath = "images/";
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $data["bukti"] = "$profileImage";
+            $input["bukti"] = "$profileImage";
         }
 
-
-        $data = [
-            'nama' => $request->input('nama'),
-            'tanggal' => $request->input('tanggal'),
-            'jenis_pembayaran' => $request->input('jenis_pembayaran'),
-            'keterangan' => $request->input('keterangan'),
-            'bukti' => $request->input('bukti'),
-        ];
-
-        Biaya::create($data);
+        Biaya::create($input);
 
         return redirect('/admin/biaya');
     }
@@ -138,7 +131,7 @@ class BiayaController extends Controller
             'keterangan' => $request->input('keterangan'),
             'bukti' => $request->input('bukti'),
 
-            
+
         ];
 
         $biaya->update($data);

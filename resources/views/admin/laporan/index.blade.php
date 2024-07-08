@@ -39,7 +39,7 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="{{ route('laporan.edit', $dt->id_laporan) }}">
                                             <i class="bx bx-edit-alt me-1"></i>
                                             Edit
                                         </a>

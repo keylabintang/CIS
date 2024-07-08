@@ -16,8 +16,7 @@
                 {{-- <small class="text-muted">{{ $subJudul }}</small> --}}
             </div>
             <div class="card-body">
-                {{-- <form action="{{ route('admin.member.store') }}" method="POST"> --}}
-                <form action="/admin/biaya" method="POST">
+                <form action="{{ route('biaya.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="nama">Nama</label>
@@ -82,8 +81,8 @@
                                 <select class="form-select @error('keterangan') border-danger @enderror" id="keterangan"
                                     aria-label="Example select with button addon" name="keterangan">
                                     <option selected>Pilih Keterangan</option>
-                                    <option value="lunas">lunas</option>
-                                    <option value="lunas">belum lunas</option>
+                                    <option value="lunas">Lunas</option>
+                                    <option value="lunas">Belum Lunas</option>
                                 </select>
                             </div>
                             @error('keterangan')
@@ -97,7 +96,10 @@
                         <label class="col-sm-2 col-form-label" for="bukti">Bukti Pembayaran</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="file" id="bukti" class="form-control @error('foto') border-danger @enderror" name="bukti" value="{{ old('bukti') }}" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                <input type="file" id="bukti"
+                                    class="form-control @error('bukti') border-danger @enderror" name="bukti"
+                                    value="{{ old('bukti') }}" accept="image/*"
+                                    onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                             </div>
                             @error('bukti')
                                 <div class="form-text text-danger">

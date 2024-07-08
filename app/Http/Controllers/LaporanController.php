@@ -59,6 +59,47 @@ class LaporanController extends Controller
         return redirect('/admin/laporan');
     }
 
+    public function edit(Laporan $laporan)
+    {
+        return view(
+            'admin.laporan.edit',
+            [
+                'judul' => 'Edit Laporan',
+                'laporan' => $laporan
+            ]
+        );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Laporan $laporan)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'bulan' => 'required',
+            'kompetensi' => 'required',
+            'catatan' => 'required',
+        ], [
+            'nama.required' => 'nama wajib diisi',
+            'kompetensi.required' => 'kompetensi wajib diisi',
+            'catatan.required' => 'catatan wajib diisi',
+        ]);
+
+
+        $data = [
+            'nama' => $request->input('nama'),
+            'bulan' => $request->input('bulan'),
+            'kompetensi' => $request->input('kompetensi'),
+            'catatan' => $request->input('catatan'),
+        ];
+
+        $laporan->update($data);
+
+        Alert::success('Data Laporan', 'Berhasil diubah!');
+        return redirect('/admin/laporan');
+    }
+
     public function destroy(Laporan $laporan)
     {
         $laporan->delete();

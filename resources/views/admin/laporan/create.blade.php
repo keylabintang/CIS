@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="keterangan">Koeterangan</label>
+                        <label class="col-sm-2 col-form-label" for="keterangan">Keterangan</label>
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <textarea type="text" class="form-control @error('catatan') border-danger @enderror" id="catatan"

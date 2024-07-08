@@ -17,9 +17,10 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Tanggal</th>
+                        <th>Hari</th>
                         <th>Waktu</th>
                         <th>Tempat</th>
+                        <th>Level</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -30,9 +31,10 @@
                         @endphp
                         <tr>
                             <td>{{ $loop->index + 1 }}. </td>
-                            <td>{{ \Carbon\Carbon::parse($dt->tanggal)->translatedFormat('l, d F Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($dt->waktu)->format('H:i') }}</td>
+                            <td>{{ $dt->hari }}</td>
+                            <td>{{ $dt->jam }}</td>
                             <td>{{ $dt->tempat }}</td>
+                            <td>{{ $dt->level }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

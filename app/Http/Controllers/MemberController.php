@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use DateTime;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
-
 
 class MemberController extends Controller
 {
@@ -21,14 +21,10 @@ class MemberController extends Controller
         $text_alert = "Apakah anda yakin ingin menghapus data ini ??";
         confirmDelete($title_alert, $text_alert);
 
-        return view(
-            'admin.member.index',
-            [
-                'judul' => 'Daftar Member',
-                'data' => $member,
-
-            ]
-        );
+        return view('admin.member.index', [
+            'judul' => 'Daftar Member',
+            'data' => $member,
+        ]);
     }
 
     /**
@@ -36,12 +32,9 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view(
-            'admin.member.create',
-            [
-                'judul' => 'Tambah Member'
-            ]
-        );
+        return view('admin.member.create', [
+            'judul' => 'Tambah Member',
+        ]);
     }
 
     /**
@@ -57,18 +50,26 @@ class MemberController extends Controller
             'wa_ortu' => 'required',
             'alamat' => 'required',
             'level' => 'required',
+            'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
         ], [
             'nama_anak.required' => 'Nama anak harus diisi',
             'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
             'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
-            'sekolah.required' => 'Sekolah harus diisi',
             'nama_ortu.required' => 'Nama orang tua harus diisi',
             'wa_ortu.required' => 'Nomor wa orang tua harus diisi',
             'alamat.required' => 'Alamat harus diisi',
-            'level.required' => 'level harus diisi',
+            'level.required' => 'Level harus diisi',
+            'foto.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
         ]);
 
         $data = $request->all();
+
+        if ($image = $request->file("foto")) {
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $data["foto"] = $profileImage;
+        }
 
         $data['umur'] = $this->hitungUmur($data['tanggal_lahir']);
 
@@ -99,14 +100,10 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-
-        return view(
-            'admin.member.edit',
-            [
-                'judul' => 'Tambah Member',
-                'data' => $member
-            ]
-        );
+        return view('admin.member.edit', [
+            'judul' => 'Edit Member',
+            'data' => $member,
+        ]);
     }
 
     /**
@@ -122,27 +119,41 @@ class MemberController extends Controller
             'wa_ortu' => 'required',
             'alamat' => 'required',
             'level' => 'required',
+            'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
         ], [
             'nama_anak.required' => 'Nama anak harus diisi',
             'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
             'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
-            'sekolah.required' => 'Sekolah harus diisi',
             'nama_ortu.required' => 'Nama orang tua harus diisi',
             'wa_ortu.required' => 'Nomor wa orang tua harus diisi',
             'alamat.required' => 'Alamat harus diisi',
-            'level.required' => 'level harus diisi',
+            'level.required' => 'Level harus diisi',
+            'foto.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
         ]);
 
-        $data = $request->all();
+        $input = $request->all();
 
-        // cek apakah tanggal lahir diubah
-        if ($request->has('tanggal_lahir')) {
-            $data['umur'] = $this->hitungUmur($data['tanggal_lahir']);
+        $data_member = Member::find($member->id_member);
+
+        if ($image = $request->file("foto")) {
+            // remove old file
+            $path = "images/";
+
+            if ($data_member->foto != ''  && $data_member->foto != null) {
+                $file_old = $path . $data_member->foto;
+                unlink($file_old);
+            }
+
+            // upload new file
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input["foto"] = "$profileImage";
         } else {
-            $data['umur'] = $member->umur;
+            unset($input["foto"]);
         }
 
-        $member->update($data);
+        $member->update($input);
 
         Alert::success('Data Member', 'Berhasil diubah!');
         return redirect('/admin/member');
@@ -153,8 +164,10 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
+        File::delete(public_path('images/' . $member->foto)); // Hapus foto dari server
         $member->delete();
-        Alert::success('Data Member', 'Berhasil dihapus!!');
+
+        Alert::success('Data Member', 'Berhasil dihapus!');
         return redirect('/admin/member');
     }
 }

@@ -1,6 +1,7 @@
 @php
   \Carbon\Carbon::setLocale('id'); 
 @endphp
+
 <!-- Modal -->
 <div class="modal fade" id="viewdetail-{{ $dt->nama_anak }}" tabindex="-1" style="display: none;" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -10,6 +11,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="text-center mb-3">
+          <img src="{{ asset('images/' . $dt->foto) }}" alt="Foto {{ $dt->nama_anak }}" style="max-width: 300px; max-height: 300px;">
+        </div>
         <div class="row">
           <div class="demo-inline-spacing">
             <div class="list-group list-group-flush">
