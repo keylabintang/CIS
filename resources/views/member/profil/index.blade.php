@@ -90,7 +90,7 @@
         .data-item .label {
             flex: 1;
             font-weight: bold;
-            padding-right: 10px;
+            padding-right: 30px;
         }
         .data-item .separator {
             flex: 0 0 20px;
