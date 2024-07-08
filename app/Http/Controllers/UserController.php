@@ -11,18 +11,20 @@ class UserController extends Controller
 		return view('login', ['title' => 'login']);
 	}
 
-	public function authenticate(Request $request){
-		$credential = $request->validate([
-			'email' => ['required', 'email:dns'],
-			'password' => ['required']
-		]);
-		if(Auth::attempt($credential)){
-			$request->session()->regenerate();
-			return redirect()->intended('/admin/admin.home-admin');
-		}
+	public function authenticate(Request $request)
+    {
+        $credential = $request->validate([
+            'email' => ['required', 'email:dns'],
+            'password' => ['required']
+        ]);
+        if (Auth::attempt($credential)) {
+            $request->session()->regenerate();
 
-		return back()->with('loginError','Login Failed');
-	}
+            return redirect()->to("/admin");
+        } else {
+            return back()->with('loginError', 'Login Failed');
+        }
+    }
 
 	public function logout()
 	{

@@ -28,21 +28,6 @@ use App\Http\Controllers\ProfilController;
 |
 */
 
-Route::get("/", function() {
-    return view("welcome");
-})->middleware("auth");
-
-Route::get('/welcome', function () {
-    return view('welcome');
-})->middleware("auth");
-
-Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
-Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
-Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
-Route::fallback(function () {
-    return redirect()->route('login')->with('loginError', 'Login Failed');
-});
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/pendaftaran', function () {
@@ -108,3 +93,15 @@ Route::prefix('/user')->group(function () {
     return view('user.home-user');
 });
 });
+
+Route::get("/", function() {
+    return view("/admin/home.admin");
+})->middleware("auth");
+
+Route::get('/admin/home.admin', function () {
+    return view('/admin/home.admin');
+})->middleware("auth");
+
+Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware("guest");
+Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);

@@ -7,61 +7,99 @@
                 <li class="breadcrumb-item">
                     <span class="text-muted fw-light">Member</span>
                 </li>
-                <li class="breadcrumb-item active">Daftar</li>
+                <li class="breadcrumb-item active">Profil</li>
             </ol>
         </nav>
         <div class="card p-4">
             <h5 class="card-header p-0 mb-4">{{ $judul }}</h5>
 
-            <table id="example" class="table table-hover py-3" style="width: 100%">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Nama</th>
-                        <th>Umur</th>
-                        <th>Orang Tua</th>
-                        <th>WA Ortu</th>
-                        <th>Alamat</th>
-                        <th>Level</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $dt)
-                        <tr>
-                            <td>{{ $loop->iteration }}. </td>
-                            <td>{{ $dt->nama_anak }}</td>
-                            <td>{{ $dt->umur }} Tahun</td>
-                            <td>{{ $dt->nama_ortu }}</td>
-                            <td>{{ $dt->wa_ortu }}</td>
-                            <td>{{ $dt->alamat }}</td>
-                            <td>{{ $dt->level }}</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#viewdetail-{{ $dt->nama_anak }}">
-                                            <i class="bx bx-error-circle me-1"></i>
-                                            Detail
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('member.edit', $dt->id_member) }}">
-                                            <i class="bx bx-edit-alt me-1"></i>
-                                            Edit
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('member.destroy', $dt->id_member) }}" data-confirm-delete="true">
-                                            <i class="bx bx-trash me-1"></i>
-                                            Delete
-                                        </a>
-                                    </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                @foreach ($data as $dt)
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="data-item">
+                                    <div class="label">Nama</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->nama_anak }}</div>
                                 </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                <div class="data-item">
+                                    <div class="label">Jenis Kelamin</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->jenis_kelamin }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Tanggal Lahir</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->tanggal_lahir }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Umur</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->umur }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Instagram</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->ig_anak }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Nama Orang Tua</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->nama_ortu }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">WhatsApp Orang Tua</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->wa_ortu }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Instagram Orang Tua</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->ig_ortu }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Alamat</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->alamat }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Asal Sekolah</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->asal_sekolah }}</div>
+                                </div>
+                                <div class="data-item">
+                                    <div class="label">Level</div>
+                                    <div class="separator">:</div>
+                                    <div class="value">{{ $dt->level }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
+
+    <style>
+        .data-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .data-item .label {
+            flex: 1;
+            font-weight: bold;
+            padding-right: 10px;
+        }
+        .data-item .separator {
+            flex: 0 0 20px;
+            text-align: center;
+        }
+        .data-item .value {
+            flex: 2;
+            text-align: left;
+            padding-left: 10px;
+        }
+    </style>
 @endsection

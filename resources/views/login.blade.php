@@ -33,6 +33,7 @@
   </svg>
   <div class="email">
     <form action="/login" method="POST">
+    @csrf
     <label for="email">Email Address</label>
     <div class="sec-2">
       <ion-icon name="mail-outline"></ion-icon>

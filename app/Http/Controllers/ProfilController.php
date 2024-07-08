@@ -20,7 +20,7 @@ class ProfilController extends Controller
         return view(
             'member.profil.index',
             [
-                'judul' => 'Data Member',
+                'judul' => 'Profil Member',
                 'data' => $member,
 
             ]
