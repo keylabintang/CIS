@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('asal_sekolah', 255)->default(null);
             $table->string('level', 255);
+            $table->text('foto');
             $table->timestamps();
         });
     }

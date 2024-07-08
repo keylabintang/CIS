@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Biaya;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\File;
 
 class BiayaController extends Controller
 {
@@ -17,7 +19,7 @@ class BiayaController extends Controller
         $data = Biaya::orderBy('id_biaya', 'asc')->get();
 
 
-        
+
         return view('admin.biaya.index', compact('judul', 'data'));
     }
 
@@ -36,7 +38,7 @@ class BiayaController extends Controller
         return view('admin.biaya.create', compact('judul', 'biaya', 'member'));
     }
 
-    /**
+    /*
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -44,21 +46,28 @@ class BiayaController extends Controller
         $request->validate([
             'nama' => 'required',
             'tanggal' => 'required',
+            'jenis_pembayaran' => 'required',
             'keterangan' => 'required',
+            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
         ], [
             'nama.required' => 'Nama wajib diisi',
             'tanggal.required' => 'Tanggal wajib diisi',
+            'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
             'keterangan.required' => 'Keterangan wajib diisi',
+            'bukti.required' => 'Bukti wajib diisi',
+
         ]);
 
+        $input = $request->all();
 
-        $data = [
-            'nama' => $request->input('nama'),
-            'tanggal' => $request->input('tanggal'),
-            'keterangan' => $request->input('keterangan'),
-        ];
+        if ($image = $request->file("bukti")) {
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input["bukti"] = "$profileImage";
+        }
 
-        Biaya::create($data);
+        Biaya::create($input);
 
         return redirect('/admin/biaya');
     }
@@ -89,18 +98,40 @@ class BiayaController extends Controller
         $request->validate([
             'nama' => 'required',
             'tanggal' => 'required',
+            'jenis_pembayaran' => 'required',
             'keterangan' => 'required',
+            'bukti' => 'required',
+            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
         ], [
             'nama.required' => 'Nama wajib diisi',
             'tanggal.required' => 'Tanggal wajib diisi',
+            'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
             'keterangan.required' => 'Keterangan wajib diisi',
+            'bukti.required' => 'Bukti wajib diisi',
+            'bukti.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
         ]);
+
+        if ($request->hasFile("bukti")) {
+            File::delete('images/' . $biaya->bukti);
+
+            $image = $request->file("bukti");
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $data["bukti"] = "$profileImage";
+        } else {
+            unset($data["bukti"]);
+        }
 
 
         $data = [
             'nama' => $request->input('nama'),
             'tanggal' => $request->input('tanggal'),
+            'jenis_pembayaran' => $request->input('jenis_pembayaran'),
             'keterangan' => $request->input('keterangan'),
+            'bukti' => $request->input('bukti'),
+
+
         ];
 
         $biaya->update($data);

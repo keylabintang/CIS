@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table) {
             $table->increments('id_jadwal');
-            $table->date('tanggal');
-            $table->time('waktu');
+            $table->string('hari');
+            $table->string('jam');
             $table->string('tempat');
-            $table->integer('status')->default(0);
+            $table->string('level');
             $table->timestamps();
         });
     }

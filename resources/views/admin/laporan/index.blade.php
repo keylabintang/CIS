@@ -19,9 +19,8 @@
                         <th>No.</th>
                         <th>Nama</th>
                         <th>Tanggal</th>
-                        <th>Jenis Pembayaran</th>
-                        <th>Keterangan</th>
-                        <th>Bukti Pembayaran</th>
+                        <th>Kompetensi</th>
+                        <th>Catatan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -30,12 +29,9 @@
                         <tr>
                             <td>{{ $loop->index + 1 }}. </td>
                             <td>{{ $dt->nama }}</td>
-                            <td>{{ \Carbon\Carbon::parse($dt->tanggal)->translatedFormat('l, d F Y') }}</td>
-                            <td>{{ $dt->jenis_pembayaran }}</td>
-                            <td>{{ $dt->keterangan }}</td>
-                            <td>
-                                <img src="{{ asset('images/'.$dt->bukti) }}" alt="bukti" width="45">
-                            </td>
+                            <td>{{ \Carbon\Carbon::parse($dt->bulan)->translatedFormat('l, d F Y') }}</td>
+                            <td>{{ $dt->kompetensi }}</td>
+                            <td>{{ $dt->catatan }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -43,12 +39,11 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ route('biaya.edit', $dt->id_biaya) }}">
+                                        <a class="dropdown-item" href="{{ route('laporan.edit', $dt->id_laporan) }}">
                                             <i class="bx bx-edit-alt me-1"></i>
                                             Edit
                                         </a>
-
-                                        <form action="{{ route('biaya.destroy', $dt->id_biaya) }}" method="POST">
+                                        <form action="{{ route('laporan.destroy', $dt->id_laporan) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item"

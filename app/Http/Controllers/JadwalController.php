@@ -48,20 +48,23 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tanggal' => 'required',
-            'waktu' => 'required',
+            'hari' => 'required',
+            'jam' => 'required',
             'tempat' => 'required',
+            'level' => 'required',
         ], [
-            'tanggal.required' => 'tanggal wajib diisi',
-            'waktu.required' => 'waktu wajib diisi',
+            'hari.required' => 'tanggal wajib diisi',
+            'jam.required' => 'waktu wajib diisi',
             'tempat.required' => 'tempat wajib diisi',
+            'level.required' => 'tempat wajib diisi',
         ]);
 
 
         $data = [
-            'tanggal' => $request->input('tanggal'),
-            'waktu' => $request->input('waktu'),
+            'hari' => $request->input('hari'),
+            'jam' => $request->input('jam'),
             'tempat' => $request->input('tempat'),
+            'level' => $request->input('level'),
         ];
 
         Jadwal::create($data);
@@ -98,20 +101,23 @@ class JadwalController extends Controller
     public function update(Request $request, Jadwal $jadwal)
     {
         $request->validate([
-            'tanggal' => 'required',
-            'waktu' => 'required',
+            'hari' => 'required',
+            'jam' => 'required',
             'tempat' => 'required',
+            'level' => 'required',
         ], [
-            'tanggal.required' => 'tanggal wajib diisi',
-            'waktu.required' => 'waktu wajib diisi',
+            'hari.required' => 'hari wajib diisi',
+            'jam.required' => 'jam wajib diisi',
             'tempat.required' => 'tempat wajib diisi',
+            'level.required' => 'level wajib diisi',
         ]);
 
 
         $data = [
-            'tanggal' => $request->input('tanggal'),
-            'waktu' => $request->input('waktu'),
+            'hari' => $request->input('hari'),
+            'jam' => $request->input('jam'),
             'tempat' => $request->input('tempat'),
+            'level' => $request->input('level'),
         ];
 
         $jadwal->update($data);

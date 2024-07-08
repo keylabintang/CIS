@@ -15,7 +15,7 @@
             <h5 class="mb-2">{{ $judul }}</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('member.update', $data->id_member) }}" method="POST">
+            <form action="{{ route('member.update', $data->id_member) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row mb-3">
@@ -177,6 +177,22 @@
                         @enderror
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="foto">Foto</label>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <input type="file" id="foto" class="form-control @error('foto') border-danger @enderror" name="foto" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        @error('foto')
+                            <div class="form-text text-danger">
+                                *{{ $message }}
+                            </div>
+                        @enderror
+                        <div class="img-output mt-3 d-flex justify-content-center">
+                            <img src="{{ asset('images/' . $data->foto) }}" id="output" width="280">
+                        </div>
+                    </div>
+                </div>
                 <div class="row justify-content-end mt-4">
                     <div class="col-sm-12">
                         <a href="/admin/member">
@@ -190,4 +206,9 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('foto').addEventListener('change', function() {
+        document.getElementById('output').src = window.URL.createObjectURL(this.files[0]);
+    });
+</script>
 @endsection

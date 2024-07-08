@@ -134,9 +134,9 @@ class EventController extends Controller
             // remove old file
             $path = "images/";
 
-            if($data_event->poster != ''  && $data_event->poster != null){
-               $file_old = $path.$data_event->poster;
-               unlink($file_old);
+            if ($data_event->poster != ''  && $data_event->poster != null) {
+                $file_old = $path . $data_event->poster;
+                unlink($file_old);
             }
 
             // upload new file
