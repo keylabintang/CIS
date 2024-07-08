@@ -13,57 +13,57 @@
     <ul class="menu-inner py-1">
 
         <!-- Dashboard -->
-        <li class="menu-item {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
-            <a href="/admin" class="menu-link">
+        <li class="menu-item {{ Request::is('member/dashboard*') ? 'active' : '' }}">
+            <a href="/member" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
         <!-- Main -->
 
-        <!-- Member -->
-        <li class="menu-item {{ Request::is('admin/member') ? 'active' : '' }}">
-                    <a href="/admin/member" class="menu-link">
+        <!-- Profil -->
+        <li class="menu-item {{ Request::is('member/profil') ? 'active' : '' }}">
+                    <a href="/member/profil" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-graduation"></i>
                         <div data-i18n="Daftar">Profil</div>
                     </a>
                 </li>
 
         <!-- Jadwal -->
-        <li class="menu-item {{ Request::is('admin/member') ? 'active' : '' }}">
-                    <a href="/admin/member" class="menu-link">
+        <li class="menu-item {{ Request::is('member/Jadwal') ? 'active' : '' }}">
+                    <a href="/member/jadwal" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>
                     <div data-i18n="Daftar">Jadwal</div>
                     </a>
                 </li>
 
         <!-- Program -->
-        <li class="menu-item {{ Request::is('admin/member') ? 'active' : '' }}">
-                    <a href="/admin/member" class="menu-link">
+        <li class="menu-item {{ Request::is('member/program') ? 'active' : '' }}">
+                    <a href="/member/program" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>
                     <div data-i18n="Daftar">Program Klub</div>
                     </a>
                 </li>
 
         <!-- Event -->
-        <li class="menu-item {{ Request::is('admin/event') ? 'active' : '' }}">
-                    <a href="/admin/event" class="menu-link">
+        <li class="menu-item {{ Request::is('member/event') ? 'active' : '' }}">
+                    <a href="/member/event" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>
                     <div data-i18n="Daftar">Event</div>
                     </a>
                 </li>
 
                  <!-- Laporan -->
-        <li class="menu-item {{ Request::is('admin/member') ? 'active' : '' }}">
-                    <a href="/admin/member" class="menu-link">
+        <li class="menu-item {{ Request::is('member/laporan') ? 'active' : '' }}">
+                    <a href="/member/laporan" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>
                     <div data-i18n="Daftar">Laporan</div>
                     </a>
                 </li>
 
                  <!-- Pembayaran -->
-        <li class="menu-item {{ Request::is('admin/member') ? 'active' : '' }}">
-                    <a href="/admin/member" class="menu-link">
+        <li class="menu-item {{ Request::is('member/pembayaran') ? 'active' : '' }}">
+                    <a href="/member/pembayaran" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>
                     <div data-i18n="Daftar">Pembayaran</div>
                     </a>

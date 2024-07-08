@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item">
                     <span class="text-muted fw-light">Event</span>
                 </li>
-                <li class="breadcrumb-item active">P</li>
+                <li class="breadcrumb-item active">Daftar</li>
             </ol>
         </nav>
         <div class="card p-4">
@@ -35,7 +35,25 @@
                             <td>{{ $dt->timeline }}</td>
                             <td>{{ $dt->tempat }}</td>
                             <td>{{ $dt->keterangan }}</td>
-                           
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('event.edit', $dt->id_event) }}">
+                                            <i class="bx bx-edit-alt me-1"></i>
+                                            Edit
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('event.destroy', $dt->id_event) }}"
+                                            data-confirm-delete="true">
+                                            <i class="bx bx-trash me-1"></i>
+                                            Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
