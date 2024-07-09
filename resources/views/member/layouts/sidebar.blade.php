@@ -53,7 +53,7 @@
                     </a>
                 </li>
 
-                 <!-- Laporan -->
+        <!-- Laporan -->
         <li class="menu-item {{ Request::is('member/laporan') ? 'active' : '' }}">
                     <a href="/member/laporan" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
 
-                 <!-- Pembayaran -->
+        <!-- Pembayaran -->
         <li class="menu-item {{ Request::is('member/pembayaran') ? 'active' : '' }}">
                     <a href="/member/pembayaran" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>

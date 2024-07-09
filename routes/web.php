@@ -12,6 +12,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 
 
@@ -78,6 +79,10 @@ Route::resource('/admin/prestasi', PrestasiController::class);
 
 Route::resource('/admin/laporan', LaporanController::class);
 
+// Member
+Route::resource('/member/profil', ProfilController::class);
+
+
 // User
 Route::prefix('/user')->group(function () {
     Route::get('/', function () {
@@ -87,4 +92,3 @@ Route::prefix('/user')->group(function () {
 
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
-
