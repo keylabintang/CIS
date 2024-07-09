@@ -12,6 +12,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 
 
@@ -27,13 +28,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get("/", function () {
-    return view("welcome");
-})->middleware("auth");
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->middleware("auth");
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -42,12 +37,17 @@ Route::get('/pendaftaran', function () {
 });
 
 // Admin
+Route::get('/admin', function () {
+    return view('admin.home-admin');
+});
 
 
 // Member
 Route::get('/member', function () {
     return view('member.home-member');
 });
+
+
 
 Route::resource('/admin/pendaftaran', PendaftaranController::class);
 Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
@@ -76,6 +76,13 @@ Route::resource('/admin/prestasi', PrestasiController::class);
 
 Route::resource('/admin/laporan', LaporanController::class);
 
+// Member
+Route::resource('/member/profil', ProfilController::class);
+
+Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+
+
+
 // User
 Route::prefix('/user')->group(function () {
     Route::get('/', function () {
@@ -83,15 +90,17 @@ Route::prefix('/user')->group(function () {
     });
 });
 
-Route::group(["middleware" => ["guest"]], function() {
+Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
+Route::group(["middleware" => ["guest"]], function () {
     Route::get('/login', [App\Http\Controllers\UserController::class, 'index']);
     Route::post("/login", [UserController::class, "authenticate"]);
 });
 
-Route::group(["middleware" => ["admin"]], function() {
+Route::group(["middleware" => ["admin"]], function () {
     Route::get('/admin', function () {
         return view('admin.home-admin');
     });
     Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 });
-
