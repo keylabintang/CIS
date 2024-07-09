@@ -52,6 +52,8 @@ Route::get('/member', function () {
     return view('member.home-member');
 });
 
+
+
 Route::resource('/admin/pendaftaran', PendaftaranController::class);
 Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
 Route::post('reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
@@ -82,6 +84,9 @@ Route::resource('/admin/laporan', LaporanController::class);
 // Member
 Route::resource('/member/profil', ProfilController::class);
 
+Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+
+
 
 // User
 Route::prefix('/user')->group(function () {
@@ -92,3 +97,4 @@ Route::prefix('/user')->group(function () {
 
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
