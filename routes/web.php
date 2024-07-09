@@ -42,9 +42,7 @@ Route::get('/pendaftaran', function () {
 });
 
 // Admin
-Route::get('/admin', function () {
-    return view('admin.home-admin');
-});
+
 
 // Member
 Route::get('/member', function () {
@@ -91,6 +89,9 @@ Route::group(["middleware" => ["guest"]], function() {
 });
 
 Route::group(["middleware" => ["admin"]], function() {
+    Route::get('/admin', function () {
+        return view('admin.home-admin');
+    });
     Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 });
 
