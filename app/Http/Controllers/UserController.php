@@ -5,7 +5,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+<<<<<<< HEAD
 class UserController extends Controller 
+=======
+class UserController extends Controller
+>>>>>>> ham
 {
 	public function index(){
 		return view('login', ['title' => 'login']);
@@ -14,7 +18,11 @@ class UserController extends Controller
 	public function authenticate(Request $request)
     {
         $credential = $request->validate([
+<<<<<<< HEAD
             'email' => ['required', 'email:dns'],
+=======
+            'email' => ['required'],
+>>>>>>> ham
             'password' => ['required']
         ]);
         if (Auth::attempt($credential)) {
@@ -32,5 +40,10 @@ class UserController extends Controller
 
         return redirect("/login");
     }
+<<<<<<< HEAD
 } 
 ?>
+=======
+}
+?>
+>>>>>>> ham
