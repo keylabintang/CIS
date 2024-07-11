@@ -62,9 +62,9 @@
                                 <select class="form-select @error('jenis_pembayaran') border-danger @enderror" id="jenis_pembayaran"
                                     aria-label="Example select with button addon" name="jenis_pembayaran">
                                     <option selected>Pilih Jenis Pembayaran</option>
-                                    <option value="spp">SPP</option>
-                                    <option value="jersey">Jersey</option>
-                                    <option value="pendaftaran lomba">Pendaftaran Lomba</option>
+                                    <option value="SPP">SPP</option>
+                                    <option value="Jersey">Jersey</option>
+                                    <option value="Pendaftaran Lomba">Pendaftaran Lomba</option>
                                 </select>
                             </div>
                             @error('jenis_pembayaran')

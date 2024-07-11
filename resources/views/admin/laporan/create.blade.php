@@ -61,7 +61,7 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <textarea type="text" class="form-control @error('kompetensi') border-danger @enderror" id="kompetensi"
-                                    name="kompetensi" rows="3">{{ old('kompetensi') }}</textarea>
+                                    name="kompetensi" rows="5">{{ old('kompetensi') }}</textarea>
                             </div>
                             @error('kompetensi')
                                 <div class="form-text text-danger">
@@ -71,11 +71,11 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="keterangan">Keterangan</label>
+                        <label class="col-sm-2 col-form-label" for="catatan">Catatan</label>
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <textarea type="text" class="form-control @error('catatan') border-danger @enderror" id="catatan"
-                                    name="catatan" rows="3">{{ old('catatan') }}</textarea>
+                                    name="catatan" rows="5">{{ old('catatan') }}</textarea>
                             </div>
                             @error('catatan')
                                 <div class="form-text text-danger">

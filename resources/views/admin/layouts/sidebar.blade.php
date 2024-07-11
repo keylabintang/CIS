@@ -23,7 +23,7 @@
         <!-- Pendaftaran -->
         <li class="menu-item {{ Request::is('admin/pendaftaran*') ? 'active' : '' }}">
             <a href="/admin/pendaftaran" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <i class="menu-icon tf-icons bx bx-user-plus"></i>
                 <div data-i18n="Pendaftaran">Pendaftaran</div>
             </a>
         </li>
@@ -34,7 +34,7 @@
         <!-- Member -->
         <li class="menu-item {{ Request::is('admin/member*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-graduation"></i>
+                <i class="menu-icon tf-icons bx bxs-user"></i>
                 <div data-i18n="Member">Member</div>
             </a>
             <ul class="menu-sub">
@@ -54,7 +54,7 @@
         <!-- Jadwal -->
         <li class="menu-item {{ Request::is('admin/jadwal*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-calendar"></i>
                 <div data-i18n="Jadwal">Jadwal</div>
             </a>
             <ul class="menu-sub">
@@ -74,7 +74,7 @@
         <!-- Program -->
         <li class="menu-item {{ Request::is('admin/program*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-star"></i>
                 <div data-i18n="Program">Program</div>
             </a>
             <ul class="menu-sub">
@@ -94,7 +94,7 @@
         <!-- Event -->
         <li class="menu-item {{ Request::is('admin/event*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-calendar-star"></i>
                 <div data-i18n="Event">Event</div>
             </a>
             <ul class="menu-sub">
@@ -114,7 +114,7 @@
         <!-- Laporan -->
         <li class="menu-item {{ Request::is('admin/laporan*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-clipboard"></i>
                 <div data-i18n="SPP">Laporan Bulanan</div>
             </a>
             <ul class="menu-sub">
@@ -134,7 +134,7 @@
         <!-- SPP -->
         <li class="menu-item {{ Request::is('admin/biaya*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-money"></i>
                 <div data-i18n="SPP">Biaya Bulanan</div>
             </a>
             <ul class="menu-sub">
@@ -157,7 +157,7 @@
         <!-- Prestasi -->
         <li class="menu-item {{ Request::is('admin/prestasi*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-medal"></i>
                 <div data-i18n="Prestasi">Prestasi</div>
             </a>
             <ul class="menu-sub">
@@ -177,7 +177,7 @@
         <!-- Pelatih -->
         <li class="menu-item {{ Request::is('admin/pelatih*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Pelatih">Pelatih</div>
             </a>
             <ul class="menu-sub">
