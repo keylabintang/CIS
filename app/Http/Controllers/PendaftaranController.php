@@ -1,5 +1,5 @@
 <?php
-
+// app/Http/Controllers/PendaftaranController.php
 namespace App\Http\Controllers;
 
 use App\Models\Member;
@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class PendaftaranController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $pendaftaran = Pendaftaran::oldest()->get();
@@ -21,47 +18,31 @@ class PendaftaranController extends Controller
         $text_alert = "Apakah anda yakin ingin menghapus data ini ??";
         confirmDelete($title_alert, $text_alert);
 
-        return view(
-            'admin.pendaftaran.index',
-            [
-                'data' => $pendaftaran,
-                'judul' => 'Daftar Pendaftaran'
-            ]
-        );
+        return view('admin.pendaftaran.index', [
+            'judul' => 'Daftar Pendaftaran',
+            'data' => $pendaftaran,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'nama_anak' => 'required',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
+            'ig_anak' => 'required',
             'nama_ortu' => 'required',
             'wa_ortu' => 'required',
+            'ig_ortu' => 'required',
             'alamat' => 'required',
-            'bukti_pembayaran' => 'required',
-            'bukti_pembayaran.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
-        ], [
-            'nama_anak.required' => 'Nama anak harus diisi',
-            'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
-            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
-            'sekolah.required' => 'Sekolah harus diisi',
-            'nama_ortu.required' => 'Nama orang tua harus diisi',
-            'wa_ortu.required' => 'Nomor wa orang tua harus diisi',
-            'alamat.required' => 'Alamat harus diisi',
-            'bukti_pembayaran.required' => 'Bukti pembayaran harus diisi',
-            'bukti_pembayaran.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
+            'asal_sekolah' => 'required',
+            'level' => 'required',
+            'bukti_pembayaran' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
         ]);
 
         $data = $request->all();
@@ -69,7 +50,6 @@ class PendaftaranController extends Controller
         $data['umur'] = $this->hitungUmur($data['tanggal_lahir']);
 
         if ($request->hasFile("bukti_pembayaran")) {
-
             $image = $request->file("bukti_pembayaran");
             $destinationPath = "images/";
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
@@ -77,11 +57,9 @@ class PendaftaranController extends Controller
             $data["bukti_pembayaran"] = "$profileImage";
         }
 
-        // var_dump($data['umur']);
-
         Pendaftaran::create($data);
 
-        return back();
+        return redirect('home')->with('Success', 'Pendaftaran berhasil!');
     }
 
     private function hitungUmur($tanggal_lahir)
@@ -89,19 +67,15 @@ class PendaftaranController extends Controller
         $tanggal_lahir = new DateTime($tanggal_lahir);
         $tanggal_sekarang = new DateTime();
         $perbedaan = $tanggal_sekarang->diff($tanggal_lahir);
-        return $perbedaan->y; // Mengembalikan umur dalam tahun
+        return $perbedaan->y;
     }
 
     public function receive(Pendaftaran $pendaftaran)
     {
-        // cek status Waiting
         if ($pendaftaran->status == 1) {
-
-            // ubah status jadi Receive
             $pendaftaran->status = 2;
             $pendaftaran->update();
 
-            // tambahkan data pendaftaran ke tabel member
             $member = new Member;
             $member->nama_anak = $pendaftaran->nama_anak;
             $member->jenis_kelamin = $pendaftaran->jenis_kelamin;
@@ -116,56 +90,41 @@ class PendaftaranController extends Controller
             $member->level = $pendaftaran->level;
             $member->save();
 
-            return back();
+            return back()->with('success', 'Pendaftaran diterima.');
         } else {
-            return back();
+            return back()->with('error', 'Status tidak valid.');
         }
     }
 
     public function reject(Pendaftaran $pendaftaran)
     {
-        // cek status Waiting
         if ($pendaftaran->status == 1) {
             $pendaftaran->status = 3;
             $pendaftaran->update();
-            return back();
+            return back()->with('success', 'Pendaftaran ditolak.');
         } else {
-            return back();
+            return back()->with('error', 'Status tidak valid.');
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Pendaftaran $pendaftaran)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Pendaftaran $pendaftaran)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Pendaftaran $pendaftaran)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Pendaftaran $pendaftaran)
     {
         $pendaftaran->delete();
-
-        // Alert::success('Data Pelatih', 'Berhasil dihapus!');
-        return redirect('/admin/pendaftaran');
+        return redirect('/admin/pendaftaran')->with('success', 'Data pendaftaran berhasil dihapus!');
     }
 }

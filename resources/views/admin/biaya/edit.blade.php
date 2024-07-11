@@ -54,9 +54,9 @@
                                 <select class="form-select @error('jenis_pembayaran') border-danger @enderror" id="jenis_pembayaran"
                                     name="jenis_pembayaran">
                                     <option value="" disabled {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) ? '' : 'selected' }}>Pilih Jenis Pembayaran</option>
-                                    <option value="spp" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'spp' ? 'selected' : '' }}>SPP</option>
-                                    <option value="jersey" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'jersey' ? 'selected' : '' }}>Jersey</option>
-                                    <option value="pendaftaran lomba" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'pendaftaran lomba' ? 'selected' : '' }}>Pendaftaran Lomba</option>
+                                    <option value="SPP" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'spp' ? 'selected' : '' }}>SPP</option>
+                                    <option value="Jersey" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'jersey' ? 'selected' : '' }}>Jersey</option>
+                                    <option value="Pendaftaran Lomba" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'pendaftaran lomba' ? 'selected' : '' }}>Pendaftaran Lomba</option>
                                 </select>
                             </div>
                             @error('jenis_pembayaran')
@@ -73,8 +73,8 @@
                                 <select class="form-select @error('keterangan') border-danger @enderror" id="keterangan"
                                     name="keterangan">
                                     <option value="" disabled {{ old('keterangan', $biaya->keterangan) ? '' : 'selected' }}>Pilih Jenis Keterangan</option>
-                                    <option value="lunas" {{ old('keterangan', $biaya->keterangan) == 'lunas' ? 'selected' : '' }}>Lunas</option>
-                                    <option value="belum lunas" {{ old('keterangan', $biaya->keterangan) == 'belum lunas' ? 'selected' : '' }}>Belum lunas</option>
+                                    <option value="Lunas" {{ old('keterangan', $biaya->keterangan) == 'lunas' ? 'selected' : '' }}>Lunas</option>
+                                    <option value="Belum Lunas" {{ old('keterangan', $biaya->keterangan) == 'belum lunas' ? 'selected' : '' }}>Belum lunas</option>
                                 </select>
                             </div>
                             @error('keterangan')
@@ -88,7 +88,10 @@
                         <label class="col-sm-2 col-form-label" for="bukti">Bukti Pembayaran</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="file" id="bukti" class="form-control @error('bukti') border-danger @enderror" name="bukti" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                <input type="file" id="bukti" 
+                                class="form-control @error('bukti') border-danger @enderror" name="bukti" 
+                                value="{{ old('bukti', $biaya->bukti) }}" accept="image/*" 
+                                onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                             </div>
                             @error('bukti')
                                 <div class="form-text text-danger">

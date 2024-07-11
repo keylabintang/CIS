@@ -24,16 +24,15 @@
                 <div class="row mb-3">
                     <label for="hari" class="col-sm-2 col-form-label">Hari</label>
                     <div class="col-sm-4">
-                        <select class="form-select @error('hari') border-danger @enderror" id="hari"
-                            name="hari">
+                        <select class="form-select @error('hari') border-danger @enderror" id="hari" name="hari">
                             <option value="" disabled>Pilih Hari</option>
-                            <option value="Senin" {{ old('hari', $jadwal->hari) == 'senin' ? 'selected' : '' }}>Senin</option>
-                            <option value="Selasa" {{ old('hari', $jadwal->hari) == 'selasa' ? 'selected' : '' }}>Selasa</option>
-                            <option value="Rabu" {{ old('hari', $jadwal->hari) == 'rabu' ? 'selected' : '' }}>Rabu</option>
-                            <option value="Kamis" {{ old('hari', $jadwal->hari) == 'kamis' ? 'selected' : '' }}>Kamis</option>
-                            <option value="Jumat" {{ old('hari', $jadwal->hari) == 'jumat' ? 'selected' : '' }}>Jumat</option>
-                            <option value="Sabtu" {{ old('hari', $jadwal->hari) == 'sabtu' ? 'selected' : '' }}>Sabtu</option>
-                            <option value="Minggu" {{ old('hari', $jadwal->hari) == 'minggu' ? 'selected' : '' }}>Minggu</option>
+                            <option value="Senin" {{ old('hari', $jadwal->hari) == 'Senin' ? 'selected' : '' }}>Senin</option>
+                            <option value="Selasa" {{ old('hari', $jadwal->hari) == 'Selasa' ? 'selected' : '' }}>Selasa</option>
+                            <option value="Rabu" {{ old('hari', $jadwal->hari) == 'Rabu' ? 'selected' : '' }}>Rabu</option>
+                            <option value="Kamis" {{ old('hari', $jadwal->hari) == 'Kamis' ? 'selected' : '' }}>Kamis</option>
+                            <option value="Jumat" {{ old('hari', $jadwal->hari) == 'Jumat' ? 'selected' : '' }}>Jumat</option>
+                            <option value="Sabtu" {{ old('hari', $jadwal->hari) == 'Sabtu' ? 'selected' : '' }}>Sabtu</option>
+                            <option value="Minggu" {{ old('hari', $jadwal->hari) == 'Minggu' ? 'selected' : '' }}>Minggu</option>
                         </select>
                         @error('hari')
                             <div class="form-text text-danger">
@@ -55,13 +54,12 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="tempat" class="col-sm-2 col-form-label">tempat</label>
+                    <label for="tempat" class="col-sm-2 col-form-label">Tempat</label>
                     <div class="col-sm-4">
-                        <select class="form-select @error('tempat') border-danger @enderror" id="tempat"
-                            name="tempat">
-                            <option value="" disabled>Pilih tempat</option>
-                            <option value="Area Parkir Living Plaza" {{ old('tempat', $jadwal->tempat) == 'Area Parkir Living Plaza' ? 'selected' : '' }}>Senin</option>
-                            <option value="Bima 2" {{ old('tempat', $jadwal->tempat) == 'Bima 2' ? 'selected' : '' }}>Selasa</option>
+                        <select class="form-select @error('tempat') border-danger @enderror" id="tempat" name="tempat">
+                            <option value="" disabled>Pilih Tempat</option>
+                            <option value="Area Parkir Living Plaza" {{ old('tempat', $jadwal->tempat) == 'Area Parkir Living Plaza' ? 'selected' : '' }}>Area Parkir Living Plaza</option>
+                            <option value="Bima 2" {{ old('tempat', $jadwal->tempat) == 'Bima 2' ? 'selected' : '' }}>Bima 2</option>
                         </select>
                         @error('tempat')
                             <div class="form-text text-danger">
@@ -71,11 +69,10 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="level" class="col-sm-2 col-form-label">level</label>
+                    <label for="level" class="col-sm-2 col-form-label">Level</label>
                     <div class="col-sm-4">
-                        <select class="form-select @error('level') border-danger @enderror" id="level"
-                            name="level">
-                            <option value="" disabled>Pilih level</option>
+                        <select class="form-select @error('level') border-danger @enderror" id="level" name="level">
+                            <option value="" disabled>Pilih Level</option>
                             <option value="Warrior" {{ old('level', $jadwal->level) == 'Warrior' ? 'selected' : '' }}>Warrior</option>
                             <option value="Elite" {{ old('level', $jadwal->level) == 'Elite' ? 'selected' : '' }}>Elite</option>
                             <option value="Freestyle" {{ old('level', $jadwal->level) == 'Freestyle' ? 'selected' : '' }}>Freestyle</option>

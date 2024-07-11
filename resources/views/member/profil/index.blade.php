@@ -10,14 +10,18 @@
                 <li class="breadcrumb-item active">Profil</li>
             </ol>
         </nav>
-        <div class="card p-4">
-            <h5 class="card-header p-0 mb-4">{{ $judul }}</h5>
+        <div class="card mb-4">
+            <br>
+            <h3 class="text-center mb-3">{{ $judul }}</h3>
 
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="row mb-3 justify-content-center">
                 @foreach ($data as $dt)
-                    <div class="col">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-center">
+                                <div class="text-center mb-3">
+                                    <img src="{{ asset('images/' . $dt->foto) }}" alt="Foto" class="rounded-circle foto-profil">
+                                </div>
                                 <div class="data-item">
                                     <div class="label">Nama</div>
                                     <div class="separator">:</div>
@@ -49,12 +53,12 @@
                                     <div class="value">{{ $dt->nama_ortu }}</div>
                                 </div>
                                 <div class="data-item">
-                                    <div class="label">WhatsApp Orang Tua</div>
+                                    <div class="label">WhatsApp Ortu</div>
                                     <div class="separator">:</div>
                                     <div class="value">{{ $dt->wa_ortu }}</div>
                                 </div>
                                 <div class="data-item">
-                                    <div class="label">Instagram Orang Tua</div>
+                                    <div class="label">Instagram Ortu</div>
                                     <div class="separator">:</div>
                                     <div class="value">{{ $dt->ig_ortu }}</div>
                                 </div>
@@ -85,21 +89,33 @@
         .data-item {
             display: flex;
             align-items: center;
+            justify-content: center; 
             margin-bottom: 15px;
+            text-align: justify; 
         }
         .data-item .label {
             flex: 1;
-            font-weight: bold;
-            padding-right: 30px;
-        }
-        .data-item .separator {
-            flex: 0 0 20px;
-            text-align: center;
+            text-align: left; 
+            white-space: nowrap; 
         }
         .data-item .value {
-            flex: 2;
-            text-align: left;
-            padding-left: 10px;
+            flex: 1;
+            text-align: left; 
+            white-space: nowrap; 
+        }
+        .separator {
+            flex: 1 30px 70px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        .foto-profil {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 30px; 
+        }
+        .label {
+            font-weight: bold;
         }
     </style>
 @endsection

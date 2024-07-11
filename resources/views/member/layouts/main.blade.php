@@ -14,7 +14,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets_admin/img/logo/cis-2.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets_admin/img/logo/logo-tab.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
