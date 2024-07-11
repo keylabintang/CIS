@@ -101,7 +101,7 @@ class BiayaController extends Controller
             'jenis_pembayaran' => 'required',
             'keterangan' => 'required',
             'bukti' => 'required',
-            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
+            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
         ], [
             'nama.required' => 'Nama wajib diisi',
             'tanggal.required' => 'Tanggal wajib diisi',
@@ -111,30 +111,29 @@ class BiayaController extends Controller
             'bukti.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
         ]);
 
-        if ($request->hasFile("bukti")) {
-            File::delete('images/' . $biaya->bukti);
+        $input = $request->all();
 
-            $image = $request->file("bukti");
+        $data_biaya = Biaya::find($biaya->id_biaya);
+
+        if ($image = $request->file("bukti")) {
+            // remove old file
+            $path = "images/";
+
+            if ($data_biaya->bukti != ''  && $data_biaya->bukti != null) {
+                $file_old = $path . $data_biaya->bukti;
+                unlink($file_old);
+            }
+
+            // upload new file
             $destinationPath = "images/";
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $data["bukti"] = "$profileImage";
+            $input["bukti"] = "$profileImage";
         } else {
-            unset($data["bukti"]);
+            unset($input["bukti"]);
         }
 
-
-        $data = [
-            'nama' => $request->input('nama'),
-            'tanggal' => $request->input('tanggal'),
-            'jenis_pembayaran' => $request->input('jenis_pembayaran'),
-            'keterangan' => $request->input('keterangan'),
-            'bukti' => $request->input('bukti'),
-
-
-        ];
-
-        $biaya->update($data);
+        $biaya->update($input);
 
         return redirect('/admin/biaya');
     }
