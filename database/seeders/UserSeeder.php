@@ -26,11 +26,6 @@ class UserSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-<<<<<<< HEAD
-        // Anda dapat menambahkan lebih banyak data user sesuai kebutuhan
-    }
-}
-=======
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'member@example.com',
@@ -41,4 +36,3 @@ class UserSeeder extends Seeder
         ]); // Anda dapat menambahkan lebih banyak data user sesuai kebutuhan
     }
 }
->>>>>>> ham
