@@ -24,15 +24,15 @@
         <!-- Profil -->
         <li class="menu-item {{ Request::is('member/profil') ? 'active' : '' }}">
                     <a href="/member/profil" class="menu-link">
-                    <i class="menu-icon tf-icons bx bxs-graduation"></i>
+                    <i class="menu-icon tf-icons bx bxs-user"></i>
                         <div data-i18n="Daftar">Profil</div>
                     </a>
                 </li>
 
         <!-- Jadwal -->
-        <li class="menu-item {{ Request::is('member/Jadwal') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('member/jadwal') ? 'active' : '' }}">
                     <a href="/member/jadwal" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-box"></i>
+                    <i class="menu-icon tf-icons bx bx-calendar"></i>
                     <div data-i18n="Daftar">Jadwal</div>
                     </a>
                 </li>
@@ -40,7 +40,7 @@
         <!-- Program -->
         <li class="menu-item {{ Request::is('member/program') ? 'active' : '' }}">
                     <a href="/member/program" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-box"></i>
+                    <i class="menu-icon tf-icons bx bx-star"></i>
                     <div data-i18n="Daftar">Program Klub</div>
                     </a>
                 </li>
@@ -48,23 +48,23 @@
         <!-- Event -->
         <li class="menu-item {{ Request::is('member/event') ? 'active' : '' }}">
                     <a href="/member/event" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-box"></i>
+                    <i class="menu-icon tf-icons bx bx-calendar-star"></i>
                     <div data-i18n="Daftar">Event</div>
                     </a>
                 </li>
 
-                 <!-- Laporan -->
+        <!-- Laporan -->
         <li class="menu-item {{ Request::is('member/laporan') ? 'active' : '' }}">
                     <a href="/member/laporan" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-box"></i>
+                    <i class="menu-icon tf-icons bx bx-clipboard"></i>
                     <div data-i18n="Daftar">Laporan</div>
                     </a>
                 </li>
 
-                 <!-- Pembayaran -->
+        <!-- Pembayaran -->
         <li class="menu-item {{ Request::is('member/pembayaran') ? 'active' : '' }}">
                     <a href="/member/pembayaran" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-box"></i>
+                    <i class="menu-icon tf-icons bx bx-money"></i>
                     <div data-i18n="Daftar">Pembayaran</div>
                     </a>
                 </li>

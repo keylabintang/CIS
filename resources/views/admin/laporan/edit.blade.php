@@ -48,10 +48,10 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="level" class="col-sm-2 col-form-label">Kompetensi</label>
+                        <label for="kompetensi" class="col-sm-2 col-form-label">Kompetensi</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <textarea name="kompetensi" id="kompetensi" cols="30" rows="10"> {{ old('kompetensi', $laporan->kompetensi) }} </textarea>
+                                <textarea name="kompetensi" id="kompetensi" cols="50" rows="5"> {{ old('kompetensi', $laporan->kompetensi) }} </textarea>
                             </div>
                             @error('kompetensi')
                                 <div class="form-text text-danger">
@@ -64,7 +64,7 @@
                         <label for="level" class="col-sm-2 col-form-label">Catatan</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <textarea name="catatan" id="catatan" cols="30" rows="10"> {{ old('catatan', $laporan->catatan) }} </textarea>
+                                <textarea type="text" name="catatan" id="catatan" cols="50" rows="5"> {{ old('catatan', $laporan->catatan) }} </textarea>
                             </div>
                             @error('catatan')
                                 <div class="form-text text-danger">
@@ -73,8 +73,7 @@
                             @enderror
                         </div>
                     </div>
-                    </div>
-                    <div class="row justify-content-end mt-7">
+                    <div class="row justify-content-end mt-4">
                         <div class="col-sm-10">
                             <a href="/admin/laporan">
                                 <button type="button" class="btn btn-sm btn-secondary px-3">Kembali
@@ -82,6 +81,7 @@
                             </a>
                             <button type="submit" class="btn btn-sm btn-primary px-3">Simpan</button>
                         </div>
+                    </div>
                     </div>
                 </form>
             </div>
