@@ -10,14 +10,17 @@
                 <li class="breadcrumb-item active">Profil</li>
             </ol>
         </nav>
-        <div class="card p-4">
-            <h5 class="card-header p-0 mb-4">{{ $judul }}</h5>
+        <div class="card mb-4">
+            <h5 class="card-header align-items-center">{{ $judul }}</h5>
 
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="rrow mb-3>
                 @foreach ($data as $dt)
-                    <div class="col">
+                    <div class="col>
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-center">
+                                <div class="text-center mb-3">
+                                    <img src="{{ asset('images/' . $dt->foto) }}" alt="Foto" class="rounded-circle foto-profil">
+                                </div>
                                 <div class="data-item">
                                     <div class="label">Nama</div>
                                     <div class="separator">:</div>
@@ -81,6 +84,7 @@
         </div>
     </div>
 
+
     <style>
         .data-item {
             display: flex;
@@ -90,16 +94,26 @@
         .data-item .label {
             flex: 1;
             font-weight: bold;
-            padding-right: 30px;
+            padding-right: 10px; /* Kurangi padding agar tidak terlalu lebar */
+            text-align: left; /* Pastikan label rata kiri */
+            white-space: nowrap; /* Agar teks label tidak terpotong */
         }
         .data-item .separator {
-            flex: 0 0 20px;
+            flex: 0 0 10px; /* Sesuaikan lebar separator agar tidak terlalu lebar */
             text-align: center;
+            margin-right: 10px; /* Tambahkan margin kanan untuk memberi jarak dengan value */
         }
         .data-item .value {
             flex: 2;
             text-align: left;
             padding-left: 10px;
         }
+        .foto-profil {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 15px; /* Tambahkan margin bawah agar ada jarak dengan data-item berikutnya */
+        }
     </style>
+     
 @endsection
