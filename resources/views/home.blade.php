@@ -8,7 +8,7 @@
     <title>Cirebon Inline Skate</title>
 
     <!-- Icon Tabs -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets_landing/images/logo/cis-2.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets_landing/images/logo/logo-tab.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />

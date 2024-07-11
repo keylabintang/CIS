@@ -47,9 +47,10 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#viewdetail-{{ $dt->nama_anak }}">
+                                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" 
+                                            data-bs-target="#viewdetail-{{ $dt->nama_anak }}">
                                             <i class="bx bx-error-circle me-1"></i>
-                                            Detail
+                                            View Detail
                                         </a>
                                         <a class="dropdown-item" href="{{ route('member.edit', $dt->id_member) }}">
                                             <i class="bx bx-edit-alt me-1"></i>

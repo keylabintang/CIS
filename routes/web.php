@@ -12,6 +12,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PendaftaranMemberController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 
@@ -54,10 +55,15 @@ Route::get('/member', function () {
 
 
 
+// Route::resource('/admin/pendaftaran', PendaftaranController::class);
+// Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
+// Route::post('reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
+// // Route::get('/admin/pendaftaran/receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
+
+// routes/web.php
 Route::resource('/admin/pendaftaran', PendaftaranController::class);
-Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
-Route::post('reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
-// Route::get('/admin/pendaftaran/receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
+Route::post('pendaftaran/receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
+Route::post('pendaftaran/reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
 
 
 
@@ -84,7 +90,8 @@ Route::resource('/admin/laporan', LaporanController::class);
 // Member
 Route::resource('/member/profil', ProfilController::class);
 
-Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+
+Route::resource('pendaftaranMember', PendaftaranMemberController::class);
 
 
 

@@ -5,7 +5,7 @@
       <script>
         document.write(new Date().getFullYear());
       </script>
-      <a href="#" target="_blank" class="footer-link fw-medium">PEMIRA - Universitas Catur Insan Cendekia Cirebon</a>
+      <a href="#" target="_blank" class="footer-link fw-medium">Cirebon Inline Skate Club</a>
     </div>
   </div>
 </footer>

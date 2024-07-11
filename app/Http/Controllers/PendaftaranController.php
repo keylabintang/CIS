@@ -13,6 +13,15 @@ class PendaftaranController extends Controller
     public function index()
     {
         $pendaftaran = Pendaftaran::oldest()->get();
+
+        $title_alert = 'Hapus Data!';
+        $text_alert = "Apakah anda yakin ingin menghapus data ini ??";
+        confirmDelete($title_alert, $text_alert);
+
+        return view('admin.pendaftaran.index', [
+            'judul' => 'Daftar Pendaftaran',
+            'data' => $pendaftaran,
+        ]);
     }
 
     public function create()
@@ -29,6 +38,7 @@ class PendaftaranController extends Controller
             'ig_anak' => 'required',
             'nama_ortu' => 'required',
             'wa_ortu' => 'required',
+            'ig_ortu' => 'required',
             'alamat' => 'required',
             'asal_sekolah' => 'required',
             'level' => 'required',

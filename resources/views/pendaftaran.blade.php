@@ -110,12 +110,16 @@
     .gender-label input {
       margin-right: 10px;
     }
-
   </style>
 </head>
 <body>
   <div class="container">
-    <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" class="signup-form-container">
+    @if (session('success'))
+      <div class="alert alert-success">
+        {{ session('success') }}
+      </div>
+    @endif
+    <form action="{{ route('pendaftaranMember.store') }}" method="POST" enctype="multipart/form-data" class="signup-form-container">
       @csrf
       <h2 class="big-heading">Pendaftaran Member Baru</h2>
       <a href="" class="app-brand-link">
@@ -124,25 +128,25 @@
       <br>
       <div class="text-fields">
         <label for="nama_anak"><i class="bx bx-user"></i></label>
-        <input type="text" name="nama_anak" id="nama_anak" placeholder="Masukan Nama" />
+        <input type="text" name="nama_anak" id="nama_anak" placeholder="Masukan Nama" required />
       </div>
       <div class="text-fields">
         <label for="asal_sekolah"><i class="bx bxs-school"></i></label>
-        <input type="text" name="asal_sekolah" id="asal_sekolah" placeholder="Masukan Asal Sekolah" />
+        <input type="text" name="asal_sekolah" id="asal_sekolah" placeholder="Masukan Asal Sekolah" required />
       </div>
       <div class="text-fields">
         <label for="tanggal_lahir"><i class="bx bx-calendar"></i></label>
-        <input type="date" name="tanggal_lahir" id="tanggal_lahir" />
+        <input type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="YYYY-MM-DD" required />
       </div>
       <div class="text-fields">
         <label for="jenis_kelamin"><i class="bx bx-male-female"></i></label>
         <div class="gender-container">
           <label class="gender-label">
-            <input type="radio" name="jenis_kelamin" value="Laki-Laki">
+            <input type="radio" name="jenis_kelamin" value="Laki-Laki" required>
             Laki-laki
           </label>
           <label class="gender-label">
-            <input type="radio" name="jenis_kelamin" value="Perempuan">
+            <input type="radio" name="jenis_kelamin" value="Perempuan" required>
             Perempuan
           </label>
         </div>
@@ -153,11 +157,11 @@
       </div>
       <div class="text-fields">
         <label for="nama_ortu"><i class="bx bx-user"></i></label>
-        <input type="text" name="nama_ortu" id="nama_ortu" placeholder="Masukan Nama Orang Tua" />
+        <input type="text" name="nama_ortu" id="nama_ortu" placeholder="Masukan Nama Orang Tua" required />
       </div>
       <div class="text-fields">
         <label for="wa_ortu"><i class="bx bx-phone"></i></label>
-        <input type="text" name="wa_ortu" id="wa_ortu" placeholder="Masukan Nomor Telepon Orang Tua" />
+        <input type="text" name="wa_ortu" id="wa_ortu" placeholder="Masukan Nomor Telepon Orang Tua" required />
       </div>
       <div class="text-fields">
         <label for="ig_ortu"><i class="bx bxl-instagram"></i></label>
@@ -165,11 +169,11 @@
       </div>
       <div class="text-fields">
         <label for="alamat"><i class="bx bx-map"></i></label>
-        <input type="text" name="alamat" id="alamat" placeholder="Masukan Alamat" />
+        <input type="text" name="alamat" id="alamat" placeholder="Masukan Alamat" required />
       </div>
       <div class="text-fields">
         <label for="bukti_pembayaran"><i class="bx bx-upload"></i></label>
-        <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" />
+        <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" required />
       </div>
       <div class="button-container">
         <button type="submit" class="submit-btn">Daftar</button>
