@@ -94,7 +94,6 @@ Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->nam
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
 Route::group(["middleware" => ["guest"]], function () {
-    Route::get('/login', [App\Http\Controllers\UserController::class, 'index']);
     Route::post("/login", [UserController::class, "authenticate"]);
 });
 
