@@ -26,6 +26,19 @@ class UserSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+<<<<<<< HEAD
         // Anda dapat menambahkan lebih banyak data user sesuai kebutuhan
     }
 }
+=======
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'member@example.com',
+            'password' => bcrypt('password'),
+            'role_as' => '2',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]); // Anda dapat menambahkan lebih banyak data user sesuai kebutuhan
+    }
+}
+>>>>>>> ham
