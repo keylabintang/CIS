@@ -119,7 +119,7 @@
         {{ session('success') }}
       </div>
     @endif
-    <form action="{{ route('pendaftaranMember.store') }}" method="POST" enctype="multipart/form-data" class="signup-form-container">
+    <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" class="signup-form-container">
       @csrf
       <h2 class="big-heading">Pendaftaran Member Baru</h2>
       <a href="" class="app-brand-link">

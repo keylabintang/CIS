@@ -94,7 +94,8 @@ class BiayaController extends Controller
             'tanggal' => 'required',
             'jenis_pembayaran' => 'required',
             'keterangan' => 'required',
-            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'bukti' => 'required',
+            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
         ], [
             'nama.required' => 'Nama wajib diisi',
             'tanggal.required' => 'Tanggal wajib diisi',
@@ -103,31 +104,31 @@ class BiayaController extends Controller
             'bukti.*.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
         ]);
 
-        $input = $request->all();
+        if ($request->hasFile("bukti")) {
+            File::delete('images/' . $biaya->bukti);
 
-        if ($image = $request->file("bukti")) {
-            // remove old file
-            $path = "images/";
-
-            if ($biaya->bukti != '' && $biaya->bukti != null) {
-                $file_old = $path . $biaya->bukti;
-                if (File::exists($file_old)) {
-                    File::delete($file_old);
-                }
-            }
-
-            // upload new file
+            $image = $request->file("bukti");
             $destinationPath = "images/";
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input["bukti"] = "$profileImage";
         } else {
-            $input["bukti"] = $biaya->bukti;
+            unset($data["bukti"]);
         }
 
-        $biaya->update($input);
 
-        Alert::success('Data Biaya', 'Berhasil Diubah!');
+        $data = [
+            'nama' => $request->input('nama'),
+            'tanggal' => $request->input('tanggal'),
+            'jenis_pembayaran' => $request->input('jenis_pembayaran'),
+            'keterangan' => $request->input('keterangan'),
+            'bukti' => $request->input('bukti'),
+
+
+        ];
+
+        $biaya->update($data);
+
         return redirect('/admin/biaya');
     }
 

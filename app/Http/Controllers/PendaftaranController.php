@@ -1,5 +1,4 @@
 <?php
-// app/Http/Controllers/PendaftaranController.php
 namespace App\Http\Controllers;
 
 use App\Models\Member;
@@ -59,7 +58,7 @@ class PendaftaranController extends Controller
 
         Pendaftaran::create($data);
 
-        return redirect('home')->with('Success', 'Pendaftaran berhasil!');
+        return redirect('/admin/pendaftaran')->with('Success', 'Pendaftaran berhasil!');
     }
 
     private function hitungUmur($tanggal_lahir)
