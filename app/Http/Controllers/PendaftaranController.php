@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Member;
@@ -54,6 +55,10 @@ class PendaftaranController extends Controller
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $data["bukti_pembayaran"] = "$profileImage";
+
+            // Store the file in the database using the storeAs method
+            $file = $request->file("bukti_pembayaran");
+            $file->storeAs("public/bukti_pembayaran", $profileImage);
         }
 
         Pendaftaran::create($data);

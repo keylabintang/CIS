@@ -11,20 +11,12 @@
             </ol>
         </nav>
         <div class="card mb-4">
-<<<<<<< HEAD
-            <h5 class="card-header align-items-center">{{ $judul }}</h5>
-
-            <div class="rrow mb-3>
-                @foreach ($data as $dt)
-                    <div class="col>
-=======
             <br>
             <h3 class="text-center mb-3">{{ $judul }}</h3>
 
             <div class="row mb-3 justify-content-center">
                 @foreach ($data as $dt)
                     <div class="col-md-6 col-lg-4 mb-4">
->>>>>>> 97bbcee59b6c252bae781a20474a5a31d9251dcf
                         <div class="card">
                             <div class="card-body text-center">
                                 <div class="text-center mb-3">
@@ -104,20 +96,8 @@
         }
         .data-item .label {
             flex: 1;
-<<<<<<< HEAD
-            font-weight: bold;
-            padding-right: 10px; /* Kurangi padding agar tidak terlalu lebar */
-            text-align: left; /* Pastikan label rata kiri */
-            white-space: nowrap; /* Agar teks label tidak terpotong */
-        }
-        .data-item .separator {
-            flex: 0 0 10px; /* Sesuaikan lebar separator agar tidak terlalu lebar */
-            text-align: center;
-            margin-right: 10px; /* Tambahkan margin kanan untuk memberi jarak dengan value */
-=======
             text-align: left; 
             white-space: nowrap; 
->>>>>>> 97bbcee59b6c252bae781a20474a5a31d9251dcf
         }
         .data-item .value {
             flex: 1;
@@ -145,5 +125,4 @@
             margin-bottom: 15px; /* Tambahkan margin bawah agar ada jarak dengan data-item berikutnya */
         }
     </style>
-     
 @endsection
