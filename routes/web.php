@@ -28,6 +28,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Route::get("/", function () {
+    return view("welcome");
+})->middleware("auth");
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->middleware("auth");
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -101,7 +109,6 @@ Route::group(["middleware" => ["admin"]], function () {
     Route::get('/admin', function () {
         return view('admin.home-admin');
     });
-
     Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 });
 
