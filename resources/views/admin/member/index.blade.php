@@ -48,7 +48,7 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" 
-                                            data-bs-target="#viewdetail-{{ $dt->nama_anak }}">
+                                            data-bs-target="#viewdetail-{{ $dt->id_member }}">
                                             <i class="bx bx-error-circle me-1"></i>
                                             View Detail
                                         </a>

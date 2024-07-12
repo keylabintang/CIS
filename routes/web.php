@@ -28,13 +28,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get("/", function () {
-    return view("welcome");
-})->middleware("auth");
-
-Route::get('/welcome', function () {
-    return view('welcome');
-})->middleware("auth");
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -47,6 +40,7 @@ Route::get('/admin', function () {
     return view('admin.home-admin');
 });
 
+
 // Member
 Route::get('/member', function () {
     return view('member.home-member');
@@ -54,15 +48,10 @@ Route::get('/member', function () {
 
 
 
-// Route::resource('/admin/pendaftaran', PendaftaranController::class);
-// Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
-// Route::post('reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
-// // Route::get('/admin/pendaftaran/receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
-
-// routes/web.php
 Route::resource('/admin/pendaftaran', PendaftaranController::class);
-Route::post('pendaftaran/receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
-Route::post('pendaftaran/reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
+Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
+Route::post('reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
+// Route::get('/admin/pendaftaran/receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
 
 
 
@@ -89,7 +78,8 @@ Route::resource('/admin/laporan', LaporanController::class);
 // Member
 Route::resource('/member/profil', ProfilController::class);
 
-
+Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+Route::post('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
 
 // User
 Route::prefix('/user')->group(function () {
@@ -100,4 +90,24 @@ Route::prefix('/user')->group(function () {
 
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+
 Route::post('/login', [App\Http\Controllers\UserController::class, 'authenticate']);
+Route::group(["middleware" => ["guest"]], function () {
+    Route::post("/login", [UserController::class, "authenticate"]);
+});
+
+Route::group(["middleware" => ["admin"]], function () {
+    Route::get('/admin', function () {
+        return view('admin.home-admin');
+    });
+
+    Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+});
+
+Route::group(["middleware" => ["member"]], function () {
+    Route::get('/member', function () {
+        return view('member.home-member');
+    });
+
+    Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+});

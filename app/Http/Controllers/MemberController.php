@@ -90,9 +90,10 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Member $member)
+    public function show(Member $id_member)
     {
-        //
+        $member = Member::where('id_member', $id_member)->first();
+        return view('member.detail', compact('member'));
     }
 
     /**
