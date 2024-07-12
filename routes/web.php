@@ -85,10 +85,10 @@ Route::resource('/admin/laporan', LaporanController::class);
 
 // Member
 Route::resource('/member/profil', ProfilController::class);
+Route::get('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
 
+//pendaftaran
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
-
-
 
 // User
 Route::prefix('/user')->group(function () {
