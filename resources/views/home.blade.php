@@ -99,7 +99,7 @@
                 <p>Salah Satu Club Sepaturoda di Indonesia yang Berdomisili di Cirebon. Ayo Gabung Bersama Kami!</p>
                 <div class="down-buttons">
                   <div class="main-blue-button">
-                    <a href="/pendaftaran">Daftar Sekarang!</a>
+                    <a href="/pendaftaranMember">Daftar Sekarang!</a>
                   </div>
                 </div>
               </div>

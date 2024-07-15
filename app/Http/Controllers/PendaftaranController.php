@@ -29,42 +29,6 @@ class PendaftaranController extends Controller
         //
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama_anak' => 'required',
-            'jenis_kelamin' => 'required',
-            'tanggal_lahir' => 'required',
-            'ig_anak' => 'required',
-            'nama_ortu' => 'required',
-            'wa_ortu' => 'required',
-            'ig_ortu' => 'required',
-            'alamat' => 'required',
-            'asal_sekolah' => 'required',
-            'level' => 'required',
-            'bukti_pembayaran' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
-        ]);
-
-        $data = $request->all();
-
-        $data['umur'] = $this->hitungUmur($data['tanggal_lahir']);
-
-        if ($request->hasFile("bukti_pembayaran")) {
-            $image = $request->file("bukti_pembayaran");
-            $destinationPath = "images/";
-            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $data["bukti_pembayaran"] = "$profileImage";
-
-            // Store the file in the database using the storeAs method
-            $file = $request->file("bukti_pembayaran");
-            $file->storeAs("public/bukti_pembayaran", $profileImage);
-        }
-
-        Pendaftaran::create($data);
-
-        return redirect('/admin/pendaftaran')->with('Success', 'Pendaftaran berhasil!');
-    }
 
     private function hitungUmur($tanggal_lahir)
     {
@@ -92,6 +56,7 @@ class PendaftaranController extends Controller
             $member->alamat = $pendaftaran->alamat;
             $member->asal_sekolah = $pendaftaran->asal_sekolah;
             $member->level = $pendaftaran->level;
+            $member->bukti_pembayaran = $pendaftaran->bukti_pembayaran;
             $member->save();
 
             return back()->with('success', 'Pendaftaran diterima.');

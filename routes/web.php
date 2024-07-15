@@ -14,6 +14,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PendaftaranMemberController;
 
 
 
@@ -27,13 +28,8 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/pendaftaran', function () {
-    return view('pendaftaran');
-});
 
 // Admin
 Route::get('/admin', function () {
@@ -78,6 +74,7 @@ Route::resource('/admin/laporan', LaporanController::class);
 // Member
 Route::resource('/member/profil', ProfilController::class);
 
+//pendaftaran
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
 Route::post('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
 
@@ -87,6 +84,8 @@ Route::prefix('/user')->group(function () {
         return view('user.home-user');
     });
 });
+
+
 
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
