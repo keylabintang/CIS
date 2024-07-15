@@ -28,7 +28,6 @@ use App\Http\Controllers\PendaftaranMemberController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
@@ -74,13 +73,10 @@ Route::resource('/admin/laporan', LaporanController::class);
 
 // Member
 Route::resource('/member/profil', ProfilController::class);
-Route::get('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
-
-Route::resource('pendaftaranMember', PendaftaranMemberController::class);
-
 
 //pendaftaran
-// Route::get('/pendaftaranMember', [PendaftaranMemberController::class, 'index'])->name('pendaftaran.index');
+Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+Route::post('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
 
 // User
 Route::prefix('/user')->group(function () {
@@ -103,6 +99,7 @@ Route::group(["middleware" => ["admin"]], function () {
     Route::get('/admin', function () {
         return view('admin.home-admin');
     });
+
     Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 });
 
