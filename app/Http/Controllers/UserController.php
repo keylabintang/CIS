@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Member;
+use App\Models\User;
+
+
 
 class UserController extends Controller
 {
@@ -39,4 +43,24 @@ class UserController extends Controller
         Auth::logout();
         return redirect("/login");
     }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id');
+    }
+
+    public function show($id)
+{
+    $user = User::findOrFail($id);
+    
+    // Mengambil data member yang terkait dengan user
+    $member = $user->member; // Menggunakan relasi yang telah didefinisikan
+    
+    // Sekarang Anda bisa mengakses properti dari objek $member
+    // Contoh:
+    $namaAnak = $member->nama_anak;
+    
+    // Kemudian kirim data ini ke view atau lakukan operasi lainnya
+    return view('user.show', compact('user', 'member'));
+}
 }

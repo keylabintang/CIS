@@ -15,72 +15,76 @@
             <h3 class="text-center mb-3">{{ $judul }}</h3>
 
             <div class="row mb-3 justify-content-center">
-                @foreach ($data as $dt)
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <div class="text-center mb-3">
-                                    <img src="{{ asset('images/' . $dt->foto) }}" alt="Foto" class="rounded-circle foto-profil">
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Nama</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->nama_anak }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Jenis Kelamin</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->jenis_kelamin }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Tanggal Lahir</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->tanggal_lahir }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Umur</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->umur }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Instagram</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->ig_anak }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Nama Orang Tua</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->nama_ortu }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">WhatsApp Ortu</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->wa_ortu }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Instagram Ortu</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->ig_ortu }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Alamat</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->alamat }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Asal Sekolah</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->asal_sekolah }}</div>
-                                </div>
-                                <div class="data-item">
-                                    <div class="label">Level</div>
-                                    <div class="separator">:</div>
-                                    <div class="value">{{ $dt->level }}</div>
+                @if ($data)
+                    @foreach ($data as $dt)
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <div class="text-center mb-3">
+                                        <img src="{{ asset('images/' . $dt->foto) }}" alt="Foto" class="rounded-circle foto-profil">
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Nama</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->nama_anak }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Jenis Kelamin</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->jenis_kelamin }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Tanggal Lahir</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->tanggal_lahir }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Umur</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->umur }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Instagram</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->ig_anak }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Nama Orang Tua</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->nama_ortu }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">WhatsApp Ortu</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->wa_ortu }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Instagram Ortu</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->ig_ortu }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Alamat</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->alamat }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Asal Sekolah</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->asal_sekolah }}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="label">Level</div>
+                                        <div class="separator">:</div>
+                                        <div class="value">{{ $dt->level }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    <p>Data member tidak tersedia.</p>
+                @endif
             </div>
         </div>
     </div>

@@ -33,6 +33,15 @@ class UserSeeder extends Seeder
             'role_as' => '2',
             'created_at' => now(),
             'updated_at' => now(),
-        ]); // Anda dapat menambahkan lebih banyak data user sesuai kebutuhan
+        ]); // 
+        
+        DB::table('users')->insert([
+            'name' => 'Firli Ardiansyah Hadi',
+            'email' => 'firliardiansyah31@gmail.com',
+            'password' => bcrypt('basaraid'),
+            'role_as' => '2',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]); // AndaAnda dapat menambahkan lebih banyak data user sesuai kebutuhan
     }
 }
