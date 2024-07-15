@@ -2,29 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
-use App\Models\Member;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $member = Member::oldest()->get();
+        // Mendapatkan user yang sedang login
+        $user = $request->user();
 
-        return view(
-            'member.profil.index',
-            [
+        // Memastikan user memiliki relasi dengan Member
+        if ($user->member) {
+            // Mengambil data member yang terkait dengan user yang sedang login
+            $member = $user->member;
+
+            return view('member.profil.index', [
                 'judul' => 'Profil Member',
-                'data' => $member,
+                'data' => [$member], // Menggunakan array untuk kompatibilitas dengan foreach di view
+            ]);
+        }
 
-            ]
-        );
+        // Jika user tidak terkait dengan member, bisa melakukan penanganan sesuai kebutuhan aplikasi
+        abort(403, 'User tidak terkait dengan member.');
     }
-
 }

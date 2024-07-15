@@ -28,14 +28,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get("/", function () {
-    return view("welcome");
-})->middleware("auth");
-
-Route::get('/welcome', function () {
-    return view('welcome');
-})->middleware("auth");
-
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -85,10 +77,9 @@ Route::resource('/admin/laporan', LaporanController::class);
 
 // Member
 Route::resource('/member/profil', ProfilController::class);
-Route::get('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
 
-//pendaftaran
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+Route::post('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
 
 // User
 Route::prefix('/user')->group(function () {
@@ -109,6 +100,7 @@ Route::group(["middleware" => ["admin"]], function () {
     Route::get('/admin', function () {
         return view('admin.home-admin');
     });
+
     Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 });
 
