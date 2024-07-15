@@ -56,7 +56,6 @@ class PendaftaranController extends Controller
             $member->alamat = $pendaftaran->alamat;
             $member->asal_sekolah = $pendaftaran->asal_sekolah;
             $member->level = $pendaftaran->level;
-            $member->bukti_pembayaran = $pendaftaran->bukti_pembayaran;
             $member->save();
 
             return back()->with('success', 'Pendaftaran diterima.');

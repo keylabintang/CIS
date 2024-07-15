@@ -15,11 +15,15 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::oldest()->get();
+        $member = Member::oldest()->get();
+
+        $title_alert = 'Hapus Data!';
+        $text_alert = "Apakah anda yakin ingin menghapus data ini ??";
+        confirmDelete($title_alert, $text_alert);
 
         return view('admin.member.index', [
             'judul' => 'Daftar Member',
-            'data' => $members,
+            'data' => $member,
         ]);
     }
 
@@ -60,11 +64,11 @@ class MemberController extends Controller
 
         $data = $request->all();
 
-        if ($image = $request->file('foto')) {
-            $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+        if ($image = $request->file("foto")) {
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $data['foto'] = $profileImage;
+            $data["foto"] = $profileImage;
         }
 
         $data['umur'] = $this->hitungUmur($data['tanggal_lahir']);
@@ -86,7 +90,7 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id_member)
+    public function show(Member $id_member)
     {
         $member = Member::where('id_member', $id_member)->first();
         return view('member.detail', compact('member'));
@@ -130,23 +134,24 @@ class MemberController extends Controller
 
         $input = $request->all();
 
-        if ($image = $request->file('foto')) {
-            // Hapus file lama
-            $path = 'images/';
-            if ($member->foto != '' && $member->foto != null) {
-                $file_old = $path . $member->foto;
-                if (File::exists($file_old)) {
-                    File::delete($file_old);
-                }
+        $data_member = Member::find($member->id_member);
+
+        if ($image = $request->file("foto")) {
+            // remove old file
+            $path = "images/";
+
+            if ($data_member->foto != ''  && $data_member->foto != null) {
+                $file_old = $path . $data_member->foto;
+                unlink($file_old);
             }
 
-            // Upload file baru
-            $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            // upload new file
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['foto'] = $profileImage;
+            $input["foto"] = "$profileImage";
         } else {
-            unset($input['foto']);
+            unset($input["foto"]);
         }
 
         $member->update($input);
@@ -160,12 +165,7 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        if ($member->foto) {
-            $file_path = public_path('images/' . $member->foto);
-            if (File::exists($file_path)) {
-                File::delete($file_path);
-            }
-        }
+        File::delete(public_path('images/' . $member->foto)); // Hapus foto dari server
         $member->delete();
 
         Alert::success('Data Member', 'Berhasil dihapus!');

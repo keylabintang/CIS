@@ -194,5 +194,25 @@
             </ul>
         </li>
 
+        <!-- Registrasi -->
+        <li class="menu-item {{ Request::is('admin/registrasi*') ? 'active open' : '' }}">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="user">User</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('admin/registrasi') ? 'active' : '' }}">
+                    <a href="/admin/registrasi" class="menu-link">
+                        <div data-i18n="Daftar">Daftar</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('admin/registrasi/create') ? 'active' : '' }}">
+                    <a href="{{ route('registrasi.create') }}" class="menu-link">
+                        <div data-i18n="Tambah">Tambah</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
     </ul>
 </aside>
