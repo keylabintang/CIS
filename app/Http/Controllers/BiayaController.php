@@ -104,31 +104,30 @@ class BiayaController extends Controller
             'bukti.*.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
         ]);
 
-        if ($request->hasFile("bukti")) {
-            File::delete('images/' . $biaya->bukti);
+        $input = $request->all();
 
-            $image = $request->file("bukti");
-            $destinationPath = "images/";
-            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+        if ($image = $request->file('bukti')) {
+            // Hapus file lama
+            $path = 'images/';
+            if ($biaya->bukti != '' && $biaya->bukti != null) {
+                $file_old = $path . $biaya->bukti;
+                if (File::exists($file_old)) {
+                    File::delete($file_old);
+                }
+            }
+
+            // Upload file baru
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input["bukti"] = "$profileImage";
+            $input['bukti'] = $profileImage;
         } else {
-            unset($data["bukti"]);
+            unset($input['bukti']);
         }
 
+        $biaya->update($input);
 
-        $data = [
-            'nama' => $request->input('nama'),
-            'tanggal' => $request->input('tanggal'),
-            'jenis_pembayaran' => $request->input('jenis_pembayaran'),
-            'keterangan' => $request->input('keterangan'),
-            'bukti' => $request->input('bukti'),
-
-
-        ];
-
-        $biaya->update($data);
-
+        Alert::success('Data biaya', 'Berhasil diubah!');
         return redirect('/admin/biaya');
     }
 

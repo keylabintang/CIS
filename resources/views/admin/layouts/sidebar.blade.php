@@ -1,7 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="/admin" class="app-brand-link">
-            <img src="{{ asset('assets_admin/img/logo/cis.png') }}" class="logo" alt="logo" />
+            <img src="{{ asset('assets_admin/img/logo/cis-2.png') }}" class="logo" alt="logo" />
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
