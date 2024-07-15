@@ -68,9 +68,6 @@
                     <div data-i18n="Daftar">Pembayaran</div>
                     </a>
                 </li>
-
-        
-
     </ul>
 </aside>
 <i class="menu-icon tf-icons bx bx-box"></i>

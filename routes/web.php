@@ -14,6 +14,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PendaftaranMemberController;
 
 
@@ -28,6 +29,7 @@ use App\Http\Controllers\PendaftaranMemberController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
@@ -71,12 +73,16 @@ Route::resource('/admin/prestasi', PrestasiController::class);
 
 Route::resource('/admin/laporan', LaporanController::class);
 
+Route::resource('/admin/registrasi', RegistrasiController::class);
+
+
 // Member
 Route::resource('/member/profil', ProfilController::class);
+Route::delete('/admin/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy');
+
 
 //pendaftaran
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
-Route::post('/member/{id_member}', [MemberController::class, 'show'])->name('member.show');
 
 // User
 Route::prefix('/user')->group(function () {
