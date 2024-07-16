@@ -16,8 +16,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PendaftaranMemberController;
-
-
+use App\Http\Controllers\ProgramMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +43,8 @@ Route::get('/member', function () {
     return view('member.home-member');
 });
 
+
+Route::resource('/pendaftaranMember', PendaftaranMemberController::class);
 
 Route::resource('/pendaftaranMember', PendaftaranMemberController::class);
 
@@ -80,6 +81,9 @@ Route::resource('/admin/registrasi', RegistrasiController::class);
 
 // Member
 Route::resource('/member/profil', ProfilController::class);
+
+Route::resource('/member/programmember', ProgramMemberController::class);
+
 Route::delete('/admin/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy');
 
 
