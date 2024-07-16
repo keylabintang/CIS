@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     {
         // Contoh menambahkan user baru
         DB::table('users')->insert([
-            'name' => 'Admin',
+            'nama' => 'Admin',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
             'role_as' => '1',
@@ -26,22 +26,21 @@ class UserSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'Member',
-            'email' => 'member@example.com',
-            'password' => bcrypt('password'),
-            'role_as' => '2',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]); // 
-        
-        DB::table('users')->insert([
-            'name' => 'Firli Ardiansyah Hadi',
-            'email' => 'firliardiansyah31@gmail.com',
-            'password' => bcrypt('basaraid'),
-            'role_as' => '2',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]); // AndaAnda dapat menambahkan lebih banyak data user sesuai kebutuhan
+        // DB::table('member')->insert([
+        //     'nama_anak' => 'Admin',
+        //     'jenis_kelamin' => '-',
+        //     'tanggal_lahir' => '31-01-2002',
+        //     'umur' => '-',
+        //     'ig_anak' => '-',
+        //     'nama_ortu' => '-',
+        //     'wa_ortu' => '123',
+        //     'ig_ortu' => '-',
+        //     'alamat' => '-',
+        //     'asal_sekolah' => '-',
+        //     'level' => '-',
+        //     'foto' => '-',
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
     }
 }

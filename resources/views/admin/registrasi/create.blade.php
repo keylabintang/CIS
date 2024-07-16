@@ -21,10 +21,15 @@
                         <label class="col-sm-3 col-form-label" for="name">Nama User</label>
                         <div class="col-sm-5">
                             <div class="input-group">
-                                <input type="text" class="form-control @error('name') border-danger @enderror"
-                                    id="name" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama" />
+                                <select class="form-select @error('nama') border-danger @enderror" id="nama"
+                                    aria-label="Example select with button addon" name="nama">
+                                    <option selected>Pilih Member</option>
+                                    @foreach ($member as $mmr)
+                                        <option value="{{ $mmr->nama_anak }}">{{ $mmr->nama_anak }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            @error('name')
+                            @error('nama')
                                 <div class="form-text text-danger">
                                     *{{ $message }}
                                 </div>

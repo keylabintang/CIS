@@ -31,10 +31,10 @@
                     @endphp
                         <tr>
                             <td>{{ $loop->index + 1 }}. </td>
-                            <td>{{ $dt->name }}</td>
+                            <td>{{ $dt->nama }}</td>
                             <td>{{ $dt->email }}</td>
                             <td>{{ $dt->password }}</td>
-                            <td>{{ $dt->role_as }}</td>
+                            <td>{{ $dt->role_as == 1 ? 'Admin' : ($dt->role_as == 2 ? 'Member' : 'Unknown') }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

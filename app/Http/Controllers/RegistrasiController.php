@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Member;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegistrasiController extends Controller
 {
@@ -30,20 +30,21 @@ class RegistrasiController extends Controller
 
         $user = User::all();
 
-        return view('admin.registrasi.create', compact('judul', 'user'));
-    }
+        $member = Member::all();
 
+        return view('admin.registrasi.create', compact('judul', 'user', 'member'));
+    }
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'email' => 'required',
             'password' => 'required',
             'role_as' => 'required',
         ], [
-            'name.required' => 'name wajib diisi',
+            'nama.required' => 'nama wajib diisi',
             'email.required' => 'email wajib diisi',
             'password.required' => 'password wajib diisi',
             'role_as.required' => 'role_as wajib diisi',
@@ -51,7 +52,7 @@ class RegistrasiController extends Controller
 
 
         $data = [
-            'name' => $request->input('name'),
+            'nama' => $request->input('nama'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->password),
             'role_as' => $request->input('role_as'),
@@ -85,18 +86,18 @@ class RegistrasiController extends Controller
     public function update(Request $request, User $registrasi)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'email' => 'required',
             'password' => 'required',
         ], [
-            'name.required' => 'name wajib diisi',
+            'nama.required' => 'nama wajib diisi',
             'email.required' => 'email wajib diisi',
             'password.required' => 'password wajib diisi',
         ]);
 
 
         $data = [
-            'name' => $request->input('name'),
+            'nama' => $request->input('nama'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->password),
         ];

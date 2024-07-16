@@ -206,11 +206,6 @@
                         <div data-i18n="Daftar">Daftar</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('admin/registrasi/create') ? 'active' : '' }}">
-                    <a href="{{ route('registrasi.create') }}" class="menu-link">
-                        <div data-i18n="Tambah">Tambah</div>
-                    </a>
-                </li>
             </ul>
         </li>
 

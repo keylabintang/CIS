@@ -76,7 +76,7 @@ class MemberController extends Controller
         Member::create($data);
 
         Alert::success('Data Member', 'Berhasil ditambahkan!');
-        return redirect('/admin/member');
+        return redirect('/admin/registrasi/create');
     }
 
     private function hitungUmur($tanggal_lahir)
