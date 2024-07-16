@@ -38,8 +38,8 @@
                 </li>
 
         <!-- Program -->
-        <li class="menu-item {{ Request::is('member/program') ? 'active' : '' }}">
-                    <a href="/member/program" class="menu-link">
+        <li class="menu-item {{ Request::is('member/programmember') ? 'active' : '' }}">
+                    <a href="/member/programmember" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-star"></i>
                     <div data-i18n="Daftar">Program Klub</div>
                     </a>

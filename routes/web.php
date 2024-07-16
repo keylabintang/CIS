@@ -16,8 +16,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PendaftaranMemberController;
-
-
+use App\Http\Controllers\ProgramMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +44,8 @@ Route::get('/member', function () {
 });
 
 
+
+Route::resource('/pendaftaranMember', PendaftaranMemberController::class);
 
 Route::resource('/admin/pendaftaran', PendaftaranController::class);
 Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
@@ -78,6 +79,9 @@ Route::resource('/admin/registrasi', RegistrasiController::class);
 
 // Member
 Route::resource('/member/profil', ProfilController::class);
+
+Route::resource('/member/programmember', ProgramMemberController::class);
+
 Route::delete('/admin/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy');
 
 
