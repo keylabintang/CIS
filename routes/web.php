@@ -45,12 +45,14 @@ Route::get('/member', function () {
 });
 
 
+Route::resource('/pendaftaranMember', PendaftaranMemberController::class);
 
 Route::resource('/admin/pendaftaran', PendaftaranController::class);
 Route::post('receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
 Route::post('reject/{pendaftaran}', [PendaftaranController::class, 'reject'])->name('pendaftaran.reject');
 // Route::get('/admin/pendaftaran/receive/{pendaftaran}', [PendaftaranController::class, 'receive'])->name('pendaftaran.receive');
 
+Route::get('user/create/{id_member}', [UserController::class, 'create'])->name('user.create');
 
 
 Route::resource('/admin/member', MemberController::class);

@@ -20,14 +20,13 @@
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="name">Nama User</label>
+                        <label class="col-sm-2 col-form-label" for="tempat">Nama</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="text" class="form-control @error('name') border-danger @enderror"
-                                    id="name" name="name" value="{{ $registrasi->name }}"
-                                    placeholder="Masukkan registrasi" />
+                                <input type="text" class="form-control @error('nama') border-danger @enderror"
+                                    id="nama" name="nama" value="{{ old('nama', $registrasi->nama) }}" placeholder="Masukkan Nama" />
                             </div>
-                            @error('name')
+                            @error('nama')
                                 <div class="form-text text-danger">
                                     *{{ $message }}
                                 </div>
