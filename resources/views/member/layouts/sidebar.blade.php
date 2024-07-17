@@ -30,8 +30,8 @@
                 </li>
 
         <!-- Jadwal -->
-        <li class="menu-item {{ Request::is('member/jadwal') ? 'active' : '' }}">
-                    <a href="/member/jadwal" class="menu-link">
+        <li class="menu-item {{ Request::is('member/jadwalmember') ? 'active' : '' }}">
+                    <a href="/member/jadwalmember" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-calendar"></i>
                     <div data-i18n="Daftar">Jadwal</div>
                     </a>
@@ -46,8 +46,8 @@
                 </li>
 
         <!-- Event -->
-        <li class="menu-item {{ Request::is('member/event') ? 'active' : '' }}">
-                    <a href="/member/event" class="menu-link">
+        <li class="menu-item {{ Request::is('member/eventmember') ? 'active' : '' }}">
+                    <a href="/member/eventmember" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-calendar-star"></i>
                     <div data-i18n="Daftar">Event</div>
                     </a>
