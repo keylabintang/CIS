@@ -23,7 +23,7 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card p-3">
                                 <div class="data-item">
-                                    <div class="value">{{ $dt->nama }}</div>
+                                    <div class="value">{{ $dt->id_member }}</div>
                                 </div>
                                 <div class="data-item">
                                     <div class="value">{{ \Carbon\Carbon::parse($dt->tanggal)->translatedFormat('l, d F Y') }}</div>

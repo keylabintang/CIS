@@ -18,6 +18,6 @@ class User extends Authenticatable
 
     public function member(): HasOne
     {
-        return $this->hasOne(Member::class, 'id_member', 'id');
+        return $this->hasOne(Member::class, 'id_member');
     }
 }

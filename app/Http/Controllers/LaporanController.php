@@ -11,12 +11,13 @@ class LaporanController extends Controller
 {
     public function index()
     {
+        $member = Member::all();
+
         $judul = "Data Laporan Bulanan";
         $data = Laporan::orderBy('id_laporan', 'asc')->get();
 
 
-
-        return view('admin.laporan.index', compact('judul', 'data'));
+        return view('admin.laporan.index', compact('judul', 'data', 'member'));
     }
 
     public function create()
@@ -33,13 +34,15 @@ class LaporanController extends Controller
 
     public function store(Request $request)
     {
+
+
         $request->validate([
-            'nama' => 'required',
+            'id_member' => 'required',
             'bulan' => 'required',
             'kompetensi' => 'required',
             'catatan' => 'required',
         ], [
-            'nama.required' => 'nama wajib diisi',
+            'id_member.required' => 'id_member wajib diisi',
             'bulan.required' => 'bulan wajib diisi',
             'kompetensi.required' => 'kompetensi wajib diisi',
             'catatan.required' => 'catatan wajib diisi',
@@ -47,7 +50,7 @@ class LaporanController extends Controller
 
 
         $data = [
-            'nama' => $request->input('nama'),
+            'id_member' => $request->input('id_member'),
             'bulan' => $request->input('bulan'),
             'kompetensi' => $request->input('kompetensi'),
             'catatan' => $request->input('catatan'),

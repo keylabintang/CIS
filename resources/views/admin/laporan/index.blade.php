@@ -28,7 +28,7 @@
                     @foreach ($data as $dt)
                         <tr>
                             <td>{{ $loop->index + 1 }}. </td>
-                            <td>{{ $dt->nama }}</td>
+                            <td>{{ $dt->member->nama_anak }}</td>
                             <td>{{ \Carbon\Carbon::parse($dt->bulan)->translatedFormat('l, d F Y') }}</td>
                             <td>{{ $dt->kompetensi }}</td>
                             <td>{{ $dt->catatan }}</td>

@@ -23,11 +23,11 @@
                         <label class="col-sm-2 col-form-label" for="nama">Nama</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <select class="form-select @error('nama') border-danger @enderror" id="nama"
-                                    aria-label="Example select with button addon" name="nama">
+                                <select class="form-select @error('id_member') border-danger @enderror" id="id_member"
+                                    aria-label="Example select with button addon" name="id_member">
                                     <option selected>Pilih Member</option>
                                     @foreach ($member as $mmr)
-                                        <option value="{{ $mmr->nama_anak }}">{{ $mmr->nama_anak }}</option>
+                                        <option value="{{ $mmr->id_member }}">{{ $mmr->nama_anak }}</option>
                                     @endforeach
                                 </select>
                             </div>

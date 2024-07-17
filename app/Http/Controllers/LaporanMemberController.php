@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Member;
+
+
+
 
 class LaporanMemberController extends Controller
 {
     public function index()
     {
-        $laporan = Laporan::oldest()->get();
 
-        // Hapus baris berikut karena tidak valid
-        // $title_alert = 'Hapus Data!';
-        // $text_alert = "Apakah anda yakin ingin menghapus data ini ??";
-        // confirmDelete($title_alert, $text_alert);
+        // Mendapatkan id_member dari pengguna yang sedang login
+        $id_member = Auth::id();
+
+        // Mengambil laporan hanya untuk member yang sedang login
+        $laporan = Laporan::where('id_member', $id_member)->oldest()->get();
 
         return view(
             'member.laporanmember.index',
@@ -27,6 +32,7 @@ class LaporanMemberController extends Controller
 
     public function show($id_laporan)
     {
+
         $laporan = Laporan::find($id_laporan);
 
         if ($laporan) {
