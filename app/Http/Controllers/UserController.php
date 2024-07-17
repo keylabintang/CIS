@@ -33,7 +33,9 @@ class UserController extends Controller
             }
         }
 
-        return back()->with('loginError', 'Login Failed');
+        return redirect()->back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
     }
 
     public function logout()
