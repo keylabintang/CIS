@@ -31,7 +31,6 @@ class BiayaController extends Controller
 
         return view('admin.biaya.create', compact('judul', 'member'));
     }
-
     /*
 	 * Store a newly created resource in storage.
 	 */

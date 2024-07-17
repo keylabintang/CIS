@@ -48,16 +48,7 @@
                                             <div class="row">
                                                 <div class="demo-inline-spacing">
                                                     <div class="list-group list-group-flush">
-                                                        <div class="list-group-item list-group-item-action mb-1">
-                                                            <div class="row">
-                                                                <div class="col-lg-4">
-                                                                    <span>Nama</span>
-                                                                </div>
-                                                                <div class="col-lg-8">
-                                                                    <span>: {{ $dt->nama }}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        
                                                         <div class="list-group-item list-group-item-action mb-1">
                                                             <div class="row">
                                                                 <div class="col-lg-4">

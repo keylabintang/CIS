@@ -93,6 +93,7 @@ Route::resource('/member/jadwalmember', JadwalMemberController::class);
 Route::resource('/member/laporanmember', LaporanMemberController::class);
 Route::get('/laporan/{id}', [LaporanMemberController::class, 'show'])->name('laporan.show');
 
+
 Route::delete('/admin/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy');
 
 
