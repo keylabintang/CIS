@@ -54,7 +54,7 @@
                 </li>
 
         <!-- Laporan -->
-        <li class="menu-item {{ Request::is('member/laporan') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('member/laporanmember') ? 'active' : '' }}">
                     <a href="/member/laporan" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-clipboard"></i>
                     <div data-i18n="Daftar">Laporan</div>

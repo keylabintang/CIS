@@ -27,5 +27,4 @@ class ProgramMemberController extends Controller
             ]
         );
     }
-   
 }

@@ -19,8 +19,7 @@ use App\Http\Controllers\PendaftaranMemberController;
 use App\Http\Controllers\ProgramMemberController;
 use App\Http\Controllers\EventMemberController;
 use App\Http\Controllers\JadwalMemberController;
-
-
+use App\Http\Controllers\LaporanMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +90,8 @@ Route::resource('/member/eventmember', EventMemberController::class);
 
 Route::resource('/member/jadwalmember', JadwalMemberController::class);
 
+Route::resource('/member/laporanmember', LaporanMemberController::class);
+Route::get('/laporan/{id}', [LaporanMemberController::class, 'show'])->name('laporan.show');
 
 Route::delete('/admin/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy');
 
