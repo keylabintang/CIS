@@ -37,7 +37,7 @@
           </div>
           <!-- Card 3 -->
           <div class="col-lg-4 col-md-6 col-12 mb-5">
-            <a href="{{ url('/member/program') }}" class="card cursor-pointer">              
+            <a href="{{ url('/member/programmember') }}" class="card cursor-pointer">              
               <div class="card-body text-center">
                 <div class="card-title mb-3">
                   <div class="avatar flex-shrink-0 mx-auto">
@@ -67,7 +67,7 @@
           </div>
           <!-- Card 5 -->
           <div class="col-lg-4 col-md-6 col-12 mb-5">
-            <a href="{{ url('/member/laporan') }}" class="card cursor-pointer">              
+            <a href="{{ url('/member/laporanmember') }}" class="card cursor-pointer">              
               <div class="card-body text-center">
                 <div class="card-title mb-3">
                   <div class="avatar flex-shrink-0 mx-auto">
