@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PendaftaranMemberController;
 use App\Http\Controllers\ProgramMemberController;
+use App\Http\Controllers\LaporanMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,9 @@ Route::resource('/admin/registrasi', RegistrasiController::class);
 Route::resource('/member/profil', ProfilController::class);
 
 Route::resource('/member/programmember', ProgramMemberController::class);
+
+Route::resource('/member/laporanmember', LaporanMemberController::class);
+Route::get('/laporan/{id}', [LaporanMemberController::class, 'show'])->name('laporan.show');
 
 Route::delete('/admin/member/{member}', [MemberController::class, 'destroy'])->name('member.destroy');
 
