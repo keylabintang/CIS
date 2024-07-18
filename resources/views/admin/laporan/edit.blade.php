@@ -23,14 +23,10 @@
                         <label class="col-sm-2 col-form-label" for="tempat">Nama</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="text" class="form-control @error('nama') border-danger @enderror"
-                                    id="nama" name="nama" value="{{ old('nama', $laporan->nama) }}" placeholder="Masukkan Nama" />
+                                <input type="text" class="form-control" id="nama" name="nama"
+                                    value="{{ $laporan->member->nama_anak }}" readonly />
+                                <input type="hidden" name="id_member" value="{{ $laporan->id_member }}" />
                             </div>
-                            @error('nama')
-                                <div class="form-text text-danger">
-                                    *{{ $message }}
-                                </div>
-                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">

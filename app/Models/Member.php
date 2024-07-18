@@ -25,4 +25,9 @@ class Member extends Model
     {
         return $this->belongsTo(Laporan::class);
     }
+
+    public function biaya()
+    {
+        return $this->belongsTo(Biaya::class);
+    }
 }

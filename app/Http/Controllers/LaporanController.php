@@ -79,19 +79,19 @@ class LaporanController extends Controller
     public function update(Request $request, Laporan $laporan)
     {
         $request->validate([
-            'nama' => 'required',
+            'id_member' => 'required',
             'bulan' => 'required',
             'kompetensi' => 'required',
             'catatan' => 'required',
         ], [
-            'nama.required' => 'nama wajib diisi',
+            'id_member.required' => 'id_member wajib diisi',
             'kompetensi.required' => 'kompetensi wajib diisi',
             'catatan.required' => 'catatan wajib diisi',
         ]);
 
 
         $data = [
-            'nama' => $request->input('nama'),
+            'id_member' => $request->input('id_member'),
             'bulan' => $request->input('bulan'),
             'kompetensi' => $request->input('kompetensi'),
             'catatan' => $request->input('catatan'),

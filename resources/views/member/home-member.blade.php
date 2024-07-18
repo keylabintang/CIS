@@ -22,7 +22,7 @@
           </div>
           <!-- Card 2 -->
           <div class="col-lg-4 col-md-6 col-12 mb-5">
-            <a href="{{ url('/member/jadwal') }}" class="card cursor-pointer">              
+            <a href="{{ url('/member/jadwalmember') }}" class="card cursor-pointer">              
               <div class="card-body text-center">
                 <div class="card-title mb-3">
                   <div class="avatar flex-shrink-0 mx-auto">
@@ -52,7 +52,7 @@
           </div>
           <!-- Card 4 -->
           <div class="col-lg-4 col-md-6 col-12 mb-5">
-            <a href="{{ url('/member/event') }}" class="card cursor-pointer">              
+            <a href="{{ url('/member/eventmember') }}" class="card cursor-pointer">              
               <div class="card-body text-center">
                 <div class="card-title mb-3">
                   <div class="avatar flex-shrink-0 mx-auto">
@@ -82,7 +82,7 @@
           </div>
           <!-- Card 6 -->
           <div class="col-lg-4 col-md-6 col-12 mb-5">
-            <a href="{{ url('/member/biaya') }}" class="card cursor-pointer">              
+            <a href="{{ url('/member/biayamember') }}" class="card cursor-pointer">              
               <div class="card-body text-center">
                 <div class="card-title mb-3">
                   <div class="avatar flex-shrink-0 mx-auto">

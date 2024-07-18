@@ -55,15 +55,15 @@
 
         <!-- Laporan -->
         <li class="menu-item {{ Request::is('member/laporanmember') ? 'active' : '' }}">
-                    <a href="/member/laporan" class="menu-link">
+                    <a href="/member/laporanmember" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-clipboard"></i>
                     <div data-i18n="Daftar">Laporan</div>
                     </a>
                 </li>
 
         <!-- Pembayaran -->
-        <li class="menu-item {{ Request::is('member/pembayaran') ? 'active' : '' }}">
-                    <a href="/member/pembayaran" class="menu-link">
+        <li class="menu-item {{ Request::is('member/biayamember') ? 'active' : '' }}">
+                    <a href="/member/biayamember" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-money"></i>
                     <div data-i18n="Daftar">Pembayaran</div>
                     </a>

@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item">
                     <span class="text-muted fw-light">Tambah</span>
                 </li>
-                <li class="breadcrumb-item active">Data Biaya Bulanan</li>
+                <li class="breadcrumb-item active">Data Keuangan</li>
             </ol>
         </nav>
         <div class="card mb-4">
@@ -23,10 +23,10 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <select class="form-select @error('nama') border-danger @enderror" id="nama"
-                                    aria-label="Example select with button addon" name="nama">
+                                    aria-label="Example select with button addon" name="id_member">
                                     <option selected>Pilih Member</option>
                                     @foreach ($member as $mmr)
-                                        <option value="{{ $mmr->nama_anak }}">{{ $mmr->nama_anak }}</option>
+                                        <option value="{{ $mmr->id_member }}">{{ $mmr->nama_anak }}</option>
                                     @endforeach
                                 </select>
                             </div>

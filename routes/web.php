@@ -16,10 +16,13 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PendaftaranMemberController;
-use App\Http\Controllers\ProgramMemberController;
 use App\Http\Controllers\EventMemberController;
 use App\Http\Controllers\JadwalMemberController;
 use App\Http\Controllers\LaporanMemberController;
+use App\Http\Controllers\BiayaMemberController;
+use App\Http\Controllers\ProgramMemberController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +92,8 @@ Route::resource('/member/programmember', ProgramMemberController::class);
 Route::resource('/member/eventmember', EventMemberController::class);
 
 Route::resource('/member/jadwalmember', JadwalMemberController::class);
+
+Route::resource('/member/biayamember', BiayaMemberController::class);
 
 Route::resource('/member/laporanmember', LaporanMemberController::class);
 Route::get('/laporan/{id}', [LaporanMemberController::class, 'show'])->name('laporan.show');
