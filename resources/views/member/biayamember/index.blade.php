@@ -1,32 +1,35 @@
-@extends('admin.layouts.main')
+@extends('member.layouts.main')
 
-@section('content-admin')
+@section('content-member')
     <div class="container-xxl flex-grow-1 container-p-y">
         <nav aria-label="breadcrumb" class="d-flex justify-content-end px-2">
             <ol class="breadcrumb breadcrumb-style1">
                 <li class="breadcrumb-item">
-                    <span class="text-muted fw-light">Biaya</span>
+                    <span class="text-muted fw-light">Tambah</span>
                 </li>
                 <li class="breadcrumb-item active">Data Biaya Bulanan</li>
             </ol>
         </nav>
         <div class="card mb-4">
             <div class="card-header align-items-center">
-                <h5 class="mb-2">{{ $judul }}</h5>
+                <h3 class="mb-2">{{ $judul }}</h3>
                 {{-- <small class="text-muted">{{ $subJudul }}</small> --}}
             </div>
             <div class="card-body">
-                <form action="{{ route('biaya.update', $biaya->id_biaya) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('biaya.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="tempat">Nama</label>
+                        <label class="col-sm-2 col-form-label" for="nama">Nama</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="id_member" name="id_member"
-                                    value="{{ $biaya->member->nama_anak }}" readonly />
-                                <input type="hidden" name="id_member" value="{{ $biaya->id_member }}" />
+                                <input type="text" class="form-control @error('nama') border-danger @enderror"
+                                    id="nama" name="nama" value="{{ Auth::user()->nama }}" readonly />
                             </div>
+                            @error('nama')
+                                <div class="form-text text-danger">
+                                    *{{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -34,7 +37,7 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <input type="date" class="form-control @error('tanggal') border-danger @enderror"
-                                    id="tanggal" name="tanggal" value="{{ old('tanggal', $biaya->tanggal) }}" />
+                                    id="tanggal" name="tanggal" value="{{ old('tanggal') }}" />
                             </div>
                             @error('tanggal')
                                 <div class="form-text text-danger">
@@ -44,15 +47,15 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="jenis_pembayaran" class="col-sm-2 col-form-label">Jenis Pembayaran</label>
+                        <label for="level" class="col-sm-2 col-form-label">Jenis Pembayaran</label>
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <select class="form-select @error('jenis_pembayaran') border-danger @enderror" id="jenis_pembayaran"
-                                    name="jenis_pembayaran">
-                                    <option value="" disabled {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) ? '' : 'selected' }}>Pilih Jenis Pembayaran</option>
-                                    <option value="SPP" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'spp' ? 'selected' : '' }}>SPP</option>
-                                    <option value="Jersey" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'jersey' ? 'selected' : '' }}>Jersey</option>
-                                    <option value="Pendaftaran Lomba" {{ old('jenis_pembayaran', $biaya->jenis_pembayaran) == 'pendaftaran lomba' ? 'selected' : '' }}>Pendaftaran Lomba</option>
+                                    aria-label="Example select with button addon" name="jenis_pembayaran">
+                                    <option selected>Pilih Jenis Pembayaran</option>
+                                    <option value="SPP">SPP</option>
+                                    <option value="Jersey">Jersey</option>
+                                    <option value="Pendaftaran Lomba">Pendaftaran Lomba</option>
                                 </select>
                             </div>
                             @error('jenis_pembayaran')
@@ -63,14 +66,12 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+                        <label for="level" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <select class="form-select @error('keterangan') border-danger @enderror" id="keterangan"
-                                    name="keterangan">
-                                    <option value="" disabled {{ old('keterangan', $biaya->keterangan) ? '' : 'selected' }}>Pilih Jenis Keterangan</option>
-                                    <option value="Lunas" {{ old('keterangan', $biaya->keterangan) == 'lunas' ? 'selected' : '' }}>Lunas</option>
-                                    <option value="Belum Lunas" {{ old('keterangan', $biaya->keterangan) == 'belum lunas' ? 'selected' : '' }}>Belum lunas</option>
+                                    aria-label="Example select with button addon" name="keterangan">
+                                    <option selected="Menunggu Konfirmasi">Menunggu Konfrimasi</option>
                                 </select>
                             </div>
                             @error('keterangan')
@@ -84,10 +85,10 @@
                         <label class="col-sm-2 col-form-label" for="bukti">Bukti Pembayaran</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="file" id="bukti" 
-                                class="form-control @error('bukti') border-danger @enderror" name="bukti" 
-                                value="{{ old('bukti', $biaya->bukti) }}" accept="image/*" 
-                                onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                <input type="file" id="bukti"
+                                    class="form-control @error('bukti') border-danger @enderror" name="bukti"
+                                    value="{{ old('bukti') }}" accept="image/*"
+                                    onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                             </div>
                             @error('bukti')
                                 <div class="form-text text-danger">
@@ -95,17 +96,13 @@
                                 </div>
                             @enderror
                             <div class="img-output mt-3 d-flex justify-content-center">
-                                <img src="{{ asset('images/'.$biaya->bukti) }}" id="output" width="280">
+                                <img src="" id="output" width="280">
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-end mt-4">
                         <div class="col-sm-10">
-                            <a href="/admin/biaya">
-                                <button type="button" class="btn btn-sm btn-secondary px-3">Kembali
-                                </button>
-                            </a>
-                            <button type="submit" class="btn btn-sm btn-primary px-3">Edit</button>
+                            <button type="submit" class="btn btn-sm btn-primary px-3">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -114,7 +111,40 @@
     </div>
     <script>
         document.getElementById('bukti').addEventListener('change', function() {
-            document.getElementById('output').src = window.URL.createObjectURL(this.files[0]);
+            document.getElementById('hilang').style.display = 'none';
         });
     </script>
+
+<!--view--> 
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card p-4">
+            <h3 class="card-header p-0 mb-4">{{ $judul2 }}</h3>
+
+            <table id="example" class="table table-striped py-3" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Tanggal</th>
+                        <th>Jenis Pembayaran</th>
+                        <th>Keterangan</th>
+                        <th>Bukti Pembayaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data as $dt)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}. </td>
+                            <td>{{ \Carbon\Carbon::parse($dt->tanggal)->translatedFormat('l, d F Y') }}</td>
+                            <td>{{ $dt->jenis_pembayaran }}</td>
+                            <td>{{ $dt->keterangan }}</td>
+                            <td>
+                                <img src="{{ asset('images/'.$dt->bukti) }}" alt="bukti" width="45">
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 @endsection

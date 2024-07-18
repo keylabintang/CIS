@@ -22,17 +22,15 @@
                     @endphp
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card p-3">
-                                <div class="data-item">
+                                <div class="judul">
                                     <div class="value">{{ $dt->nama }}</div>
                                 </div>
                                 <div class="data-item">
                                     <div>                                
-                                        <img src="{{ asset('images/' . $dt->poster) }}" alt="poster" width="250px" height="200px">
+                                        <img src="{{ asset('images/' . $dt->poster) }}" alt="poster" width="250" >
                                     </div>
                                 </div>
-
-                               <br>
-
+                                <br>
                                 <div class="data-item">
                                     <div class="value">{{ $dt->timeline }}</div>
                                 </div>
@@ -41,7 +39,9 @@
                                     <div class="value">{{ $dt->tempat }}</div>
                                 </div>
 
-                               
+                                <div class="data-item">
+                                    <div class="value">{{ $dt->keterangan }}</div>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -57,8 +57,16 @@
             display: flex;
             flex-direction: column; /* Stack items vertically */
             align-items: center; /* Center items horizontally */
-
             margin-bottom: 10px;
+        }
+        .judul {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-style: italic;
         }
         .label {
             font-weight: bold;

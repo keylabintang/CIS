@@ -29,7 +29,7 @@
                     @foreach ($data as $dt)
                         <tr>
                             <td>{{ $loop->index + 1 }}. </td>
-                            <td>{{ $dt->nama }}</td>
+                            <td>{{ $dt->member->nama_anak }}</td>
                             <td>{{ \Carbon\Carbon::parse($dt->tanggal)->translatedFormat('l, d F Y') }}</td>
                             <td>{{ $dt->jenis_pembayaran }}</td>
                             <td>{{ $dt->keterangan }}</td>
