@@ -34,7 +34,12 @@ class PendaftaranMemberController extends Controller
 
         $input = $request->all();
 
+        // Hitung umur berdasarkan tanggal lahir
+        $tanggal_lahir = Carbon::parse($request->tanggal_lahir);
+        $umur = $tanggal_lahir->diffInYears(Carbon::now());
+        $input['umur'] = $umur;
 
+        // Upload file bukti pembayaran jika ada
         if ($image = $request->file("bukti_pembayaran")) {
             $destinationPath = "images/";
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
@@ -42,8 +47,15 @@ class PendaftaranMemberController extends Controller
             $input["bukti_pembayaran"] = "$profileImage";
         }
 
+        // Simpan data pendaftaran
         Pendaftaran::create($input);
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Pendaftaran sukses!');
+    }
+
+    public function show(Pendaftaran $id_pendaftaran)
+    {
+        $member = Member::where('id_pendaftaran', $id_pendaftaran)->first();
+        return view('admin.detail', compact('member'));
     }
 }

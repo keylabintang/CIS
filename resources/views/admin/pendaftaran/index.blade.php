@@ -38,10 +38,10 @@
                             <td>{{ $dt->nama_ortu }}</td>
                             <td>
                                 <a href="javascript:void(0);" class="badge rounded-pill bg-label-dark"
-                                    data-bs-toggle="modal" data-bs-target="#bukti-pembayaran-{{ $dt->nama_anak }}">Show</a>
+                                    data-bs-toggle="modal" data-bs-target="#bukti-pembayaran-{{ $dt->id_pendaftaran }}">Show</a>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="bukti-pembayaran-{{ $dt->nama_anak }}" tabindex="-1"
+                                <div class="modal fade" id="bukti-pembayaran-{{ $dt->id_pendaftaran }}" tabindex="-1"
                                     style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -82,7 +82,7 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#viewdetail-{{ $dt->nama_anak }}">
+                                                data-bs-target="#viewdetail-{{ $dt->id_pendaftaran }}">
                                                 <i class="bx bx-error-circle me-1"></i>
                                                 View Detail
                                             </a>

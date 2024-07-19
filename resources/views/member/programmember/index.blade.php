@@ -12,7 +12,7 @@
         </nav>
         <div class="card mb-4">
             <br>
-            <h3 class="text-center mb-3">{{ $judul }}</h3>
+            <h2 class="text-center mb-3">{{ $judul }}</h2>
             <br>
             <div class="row mb-3 justify-content-center">
                 @if ($data)
@@ -22,8 +22,8 @@
                     @endphp
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card p-3">
-                                <div class="data-item">
-                                    <div class="value">{{ $dt->id_member }}</div>
+                                <div class="judul">
+                                    <h4 class="judul">{{ $dt->nama }}</h4>
                                 </div>
                                 <div class="data-item">
                                     <div class="value">{{ \Carbon\Carbon::parse($dt->tanggal)->translatedFormat('l, d F Y') }}</div>
@@ -52,18 +52,28 @@
             display: flex;
             flex-direction: column; /* Stack items vertically */
             align-items: center; /* Center items horizontally */
-
             margin-bottom: 10px;
+        }
+        .judul h4 {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-bottom: 20px;
+            color: rgb(88, 161, 255);
+            font-weight: 800;
         }
         .label {
             font-weight: bold;
             margin-bottom: 5px; /* Add space between label and value */
         }
         .card {
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px; /* Add padding to the card */
+        }
+        .text-center {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
     </style>
 @endsection

@@ -21,7 +21,7 @@ class ProgramMemberController extends Controller
         return view(
             'member.programmember.index',
             [
-                'judul' => 'Program Club 2024',
+                'judul' => 'PROGRAM CLUB 2024',
                 'data' => $program,
 
             ]

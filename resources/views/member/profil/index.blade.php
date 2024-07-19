@@ -12,7 +12,7 @@
         </nav>
         <div class="card mb-4">
             <br>
-            <h3 class="text-center mb-3">{{ $judul }}</h3>
+            <h2 class="text-center mb-3">{{ $judul }}</h2>
 
             <div class="row mb-3 justify-content-center">
                 @if ($data)
@@ -20,7 +20,7 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <div class="text-center mb-3">
+                                    <div class="foto mx-auto">
                                         <img src="{{ asset('images/' . $dt->foto) }}" alt="Foto" class="rounded-circle foto-profil">
                                     </div>
                                     <div class="data-item">
@@ -122,11 +122,14 @@
         .label {
             font-weight: bold;
         }
-        .foto-profil {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            margin-bottom: 15px; /* Tambahkan margin bawah agar ada jarak dengan data-item berikutnya */
+        .foto {
+            width: 150px;
+            height: 150px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 @endsection

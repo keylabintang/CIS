@@ -25,8 +25,8 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" id="nama" name="nama"
                                     value="{{ $laporan->member->nama_anak }}" readonly />
-                                <input type="hidden" name="id_member" value="{{ $laporan->id_member }}" />
-                            </div>
+                                    <input type="hidden" name="id_member" value="{{ Auth::user()->id }}">
+                                </div>
                         </div>
                     </div>
                     <div class="row mb-3">

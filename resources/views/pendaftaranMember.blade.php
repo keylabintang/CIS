@@ -56,7 +56,7 @@
       display: flex;
       flex-direction: column; 
       align-items: flex-start; 
-      border: 1px solid #ccc;
+      border: 0.5px solid #ccc;
       padding: 10px;
       margin: 10px 0;
       width: 100%;
@@ -92,10 +92,20 @@
     }
 
     .submit-btn {
-      width: 100%; 
+      width: 150px; 
       padding: 10px; 
       border-radius: 4px; 
       font-size: 1rem; 
+      background-color: #0056b3;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    .submit-btn:hover {
+      background-color: #00acc1;
+      transform: scale(1.02);
     }
 
     .gender-container {
@@ -115,16 +125,40 @@
       width: 100%;
       padding: 100%;
     }
+
+    .fee-info {
+      background-color: #e0f7fa;
+      border: 1px solid #00acc1;
+      padding: 15px;
+      margin: 20px 0;
+      width: 100%;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .fee-info h4 {
+      font-size: 1.2rem;
+      color: #007c91;
+      margin-bottom: 10px;
+    }
+
+    .fee-info p {
+      font-size: 13px;
+      color: #004d40;
+    }
     
   </style>
 </head>
 <body>
   <div class="container">
     @if (session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-    @endif
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    <script>
+      alert("Pendaftaran Sukses");
+    </script>
+  @endif
     <form action="{{ route('pendaftaranMember.store') }}" method="POST" enctype="multipart/form-data" class="signup-form-container">
       @csrf
       <h2 class="big-heading">Pendaftaran Member Baru</h2>
@@ -182,8 +216,7 @@
         @enderror
     </div>
     
-
-        <div class="text-fields">
+      <div class="text-fields">
         <label for="ig_anak"><i class="bx bxl-instagram"></i> Instagram Anak</label>
         <input type="text" class="form-control @error('ig_anak') border-danger @enderror"
               id="ig_anak" name="ig_anak" value="{{ old('ig_anak') }}" placeholder="Contoh @instagram_anak" />
@@ -251,8 +284,13 @@
           @enderror
       </div>
 
+      <div class="fee-info">
+        <h4>Biaya Pendaftaran Rp. 200.000</h4>
+        <p>Dibayarkan Melalui Rekening BCA 1342357282<br>Atas Nama Cirebon Inline Skate</p>
+      </div>
+
       <div class="text-fields">
-        <label for="bukti_pembayaran"><i class="bx bx-upload"></i> Bukti Pembayaran</label>
+        <label for="bukti_pembayaran"><i class="bx bx-upload"></i> Upload Bukti Pembayaran</label>
         <input type="file" id="bukti_pembayaran" class="form-control @error('bukti_pembayaran') border-danger @enderror" name="bukti_pembayaran" value="{{ old('bukti_pembayaran') }}" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
           @error('bukti_pembayaran')
           <div class="form-text text-danger">

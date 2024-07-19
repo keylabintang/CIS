@@ -31,19 +31,19 @@
                     @endphp
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card p-3">
-                                <div class="data-item">
-                                    <div class="value">{{ $dt->hari }}</div>
+                                <div class="hari">
+                                    <h4 class="value">{{ $dt->hari }}</h4>
                                 </div>
                             
                                 <div class="data-item">
+                                    <i class="icon bx bx-time"></i>
                                     <div class="value">{{ $dt->jam }}</div>
                                 </div>
 
-                                <div class="data-item">
+                                <div class="level">
+                                    Level : 
                                     <div class="value">{{ $dt->level }}</div>
                                 </div>
-
-                               
                             </div>
                         </div>
                     @endforeach
@@ -59,8 +59,21 @@
             display: flex;
             flex-direction: column; /* Stack items vertically */
             align-items: center; /* Center items horizontally */
-
             margin-bottom: 10px;
+        }
+        .hari h4{
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-bottom: 20px;
+            color: rgb(88, 161, 255);
+        }
+        .level {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-bottom: 10px;
+            font-weight: 600;
         }
         .label {
             font-weight: bold;
@@ -72,5 +85,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px; /* Add padding to the card */
         }
+        
     </style>
 @endsection

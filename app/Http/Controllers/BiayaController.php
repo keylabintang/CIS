@@ -37,13 +37,13 @@ class BiayaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
+            'id_member' => 'required',
             'tanggal' => 'required',
             'jenis_pembayaran' => 'required',
             'keterangan' => 'required',
             'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
         ], [
-            'nama.required' => 'Nama wajib diisi',
+            'id_member.required' => 'id_member wajib diisi',
             'tanggal.required' => 'Tanggal wajib diisi',
             'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
             'keterangan.required' => 'Keterangan wajib diisi',
