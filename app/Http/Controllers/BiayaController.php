@@ -87,48 +87,51 @@ class BiayaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Biaya $biaya)
-    {
-        $request->validate([
-            'id_member' => 'required',
-            'tanggal' => 'required',
-            'jenis_pembayaran' => 'required',
-            'keterangan' => 'required',
-            'bukti' => 'required',
-            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
-        ], [
-            'id_member.required' => 'Nama wajib diisi',
-            'tanggal.required' => 'Tanggal wajib diisi',
-            'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
-            'keterangan.required' => 'Keterangan wajib diisi',
-            'bukti.*.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
-        ]);
+{
+    $request->validate([
+        'id_member' => 'required',
+        'tanggal' => 'required',
+        'jenis_pembayaran' => 'required',
+        'keterangan' => 'required',
+        'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
+    ], [
+        'id_member.required' => 'Nama wajib diisi',
+        'tanggal.required' => 'Tanggal wajib diisi',
+        'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
+        'keterangan.required' => 'Keterangan wajib diisi',
+        'bukti.*.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
+    ]);
 
-        $input = $request->all();
+    $input = $request->all();
 
-        if ($image = $request->file('bukti')) {
-            // Hapus file lama
-            $path = 'images/';
-            if ($biaya->bukti != '' && $biaya->bukti != null) {
-                $file_old = $path . $biaya->bukti;
-                if (File::exists($file_old)) {
-                    File::delete($file_old);
-                }
+    $data_biaya = Biaya::find($biaya->id_biaya);
+
+    if ($image = $request->file("bukti")) {
+        // remove old file
+        $path = "images/";
+
+        if ($data_biaya->bukti != '' && $data_biaya->bukti != null) {
+            $file_old = $path . $data_biaya->bukti;
+            if (File::exists($file_old)) {
+                File::delete($file_old);
             }
-
-            // Upload file baru
-            $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['bukti'] = $profileImage;
-        } else {
-            unset($input['bukti']);
         }
 
-        $biaya->update($input);
-
-        Alert::success('Data biaya', 'Berhasil diubah!');
-        return redirect('/admin/biaya');
+        // upload new file
+        $destinationPath = "images/";
+        $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $profileImage);
+        $input["bukti"] = "$profileImage";
+    } else {
+        // Keep the old image if no new image is uploaded
+        $input["bukti"] = $data_biaya->bukti;
     }
+
+    $biaya->update($input);
+
+    Alert::success('Data biaya', 'Berhasil diubah!');
+    return redirect('/admin/biaya');
+}
 
     /**
      * Remove the specified resource from storage.

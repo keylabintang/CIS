@@ -46,10 +46,14 @@
                                             <i class="bx bx-edit-alt me-1"></i>
                                             Edit
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('registrasi.destroy', $dt->id) }}" data-confirm-delete="true">
-                                            <i class="bx bx-trash me-1"></i>
-                                            Delete
-                                        </a>
+                                        <form action="{{ route('registrasi.destroy', $dt->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="bx bx-trash me-1"></i>
+                                                Delete
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </td>

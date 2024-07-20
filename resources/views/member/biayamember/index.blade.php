@@ -16,16 +16,17 @@
                 {{-- <small class="text-muted">{{ $subJudul }}</small> --}}
             </div>
             <div class="card-body">
-                <form action="{{ route('biaya.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('biayamember.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="nama">Nama</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input type="text" class="form-control @error('nama') border-danger @enderror"
-                                    id="nama" name="nama" value="{{ Auth::user()->nama }}" readonly />
-                            </div>
-                            @error('nama')
+                                <input type="text" class="form-control @error('id_member') border-danger @enderror"
+                                    id="id_member" name="id_member" value="{{ Auth::user()->nama }}" readonly />
+                                    <input type="hidden" name="id_member" value="{{ Auth::user()->member->id_member }}" />
+                                    </div>
+                            @error('id_member')
                                 <div class="form-text text-danger">
                                     *{{ $message }}
                                 </div>
@@ -46,6 +47,25 @@
                             @enderror
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <label for="level" class="col-sm-2 col-form-label">Keterangan</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="form-select @error('keterangan') border-danger @enderror" id="keterangan"
+                                    aria-label="Example select with button addon" name="keterangan">
+                                    <option value="Menunggu Konfirmasi" selected>Menunggu Konfirmasi</option>
+                                   
+                                </select>
+                            </div>
+                            @error('keterangan')
+                                <div class="form-text text-danger">
+                                    *{{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <label for="level" class="col-sm-2 col-form-label">Jenis Pembayaran</label>
                         <div class="col-sm-4">
@@ -65,24 +85,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="level" class="col-sm-2 col-form-label">Keterangan</label>
-                        <div class="col-sm-4">
-                            <div class="input-group">
-                                <select class="form-select @error('keterangan') border-danger @enderror" id="keterangan"
-                                    aria-label="Example select with button addon" name="keterangan">
-                                    <option selected>Pilih Keterangan</option>
-                                    <option value="lunas">Lunas</option>
-                                    <option value="lunas">Belum Lunas</option>
-                                </select>
-                            </div>
-                            @error('keterangan')
-                                <div class="form-text text-danger">
-                                    *{{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
+                 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="bukti">Bukti Pembayaran</label>
                         <div class="col-sm-4">
