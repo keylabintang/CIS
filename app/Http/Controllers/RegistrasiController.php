@@ -111,8 +111,7 @@ class RegistrasiController extends Controller
     public function destroy(User $registrasi)
     {
         $registrasi->delete();
-
-        Alert::success('Data User', 'Berhasil dihapus!!');
+        Alert::success('Data registrasi', 'Berhasil dihapus!!');
         return redirect('/admin/registrasi');
     }
 }

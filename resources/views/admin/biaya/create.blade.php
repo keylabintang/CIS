@@ -82,7 +82,7 @@
                                     aria-label="Example select with button addon" name="keterangan">
                                     <option selected>Pilih Keterangan</option>
                                     <option value="lunas">Lunas</option>
-                                    <option value="lunas">Belum Lunas</option>
+                                    <option value="Belum Lunas">Belum Lunas</option>
                                 </select>
                             </div>
                             @error('keterangan')

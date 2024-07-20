@@ -26,21 +26,21 @@ class UserSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // DB::table('member')->insert([
-        //     'nama_anak' => 'Admin',
-        //     'jenis_kelamin' => '-',
-        //     'tanggal_lahir' => '31-01-2002',
-        //     'umur' => '-',
-        //     'ig_anak' => '-',
-        //     'nama_ortu' => '-',
-        //     'wa_ortu' => '123',
-        //     'ig_ortu' => '-',
-        //     'alamat' => '-',
-        //     'asal_sekolah' => '-',
-        //     'level' => '-',
-        //     'foto' => '-',
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
+        DB::table('member')->insert([
+            'nama_anak' => 'Admin',
+            'jenis_kelamin' => '-',
+            'tanggal_lahir' => '2015-07-01',
+            'umur' => '14',
+            'ig_anak' => '-',
+            'nama_ortu' => '-',
+            'wa_ortu' => '123',
+            'ig_ortu' => '-',
+            'alamat' => '-',
+            'asal_sekolah' => '-',
+            'level' => '-',
+            'foto' => 'asd.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
