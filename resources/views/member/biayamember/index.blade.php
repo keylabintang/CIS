@@ -71,7 +71,9 @@
                             <div class="input-group">
                                 <select class="form-select @error('keterangan') border-danger @enderror" id="keterangan"
                                     aria-label="Example select with button addon" name="keterangan">
-                                    <option selected="Menunggu Konfirmasi">Menunggu Konfrimasi</option>
+                                    <option selected>Pilih Keterangan</option>
+                                    <option value="lunas">Lunas</option>
+                                    <option value="lunas">Belum Lunas</option>
                                 </select>
                             </div>
                             @error('keterangan')

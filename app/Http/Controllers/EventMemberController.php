@@ -21,11 +21,10 @@ class EventMemberController extends Controller
         return view(
             'member.eventmember.index',
             [
-                'judul' => 'Coming Soon Event 2024',
+                'judul' => 'COMING SOON EVENT 2024',
                 'data' => $event,
 
             ]
         );
     }
-   
 }

@@ -7,6 +7,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
 
 class MemberController extends Controller
 {
@@ -64,14 +65,15 @@ class MemberController extends Controller
 
         $data = $request->all();
 
+        $data['umur'] = $this->hitungUmur($data['tanggal_lahir']);
+
+
         if ($image = $request->file("foto")) {
             $destinationPath = "images/";
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $data["foto"] = $profileImage;
         }
-
-        $data['umur'] = $this->hitungUmur($data['tanggal_lahir']);
 
         Member::create($data);
 
@@ -153,6 +155,8 @@ class MemberController extends Controller
         } else {
             unset($input["foto"]);
         }
+
+        $member['umur'] = $this->hitungUmur($member['tanggal_lahir']);
 
         $member->update($input);
 

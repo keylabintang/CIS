@@ -34,7 +34,32 @@
                             <td>{{ $dt->jenis_pembayaran }}</td>
                             <td>{{ $dt->keterangan }}</td>
                             <td>
-                                <img src="{{ asset('images/'.$dt->bukti) }}" alt="bukti" width="45">
+                                <a href="javascript:void(0);" class="badge rounded-pill bg-label-dark"
+                                    data-bs-toggle="modal" data-bs-target="#bukti-pembayaran-{{ $dt->id_biaya }}">Show</a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="bukti-pembayaran-{{ $dt->id_biaya }}" tabindex="-1"
+                                    style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel1">Butki Pembayaran</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <img src="{{ asset('images/' . $dt->bukti) }}"
+                                                        alt="bukti pembayaran">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <div class="dropdown">

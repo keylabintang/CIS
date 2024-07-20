@@ -12,7 +12,7 @@
         </nav>
         <div class="card mb-4">
             <br>
-            <h3 class="text-center mb-3">{{ $judul }}</h3>
+            <h2 class="text-center mb-3">{{ $judul }}</h2>
             <br>
             <div class="row mb-3 justify-content-center">
                 @if ($data)
@@ -23,7 +23,7 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card p-3">
                                 <div class="judul">
-                                    <div class="value">{{ $dt->nama }}</div>
+                                    <h3 class="value">{{ $dt->nama }}</h3>
                                 </div>
                                 <div class="data-item">
                                     <div>                                
@@ -55,28 +55,32 @@
     <style>
         .data-item {
             display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
+            flex-direction: column; 
+            align-items: center; 
             margin-bottom: 10px;
         }
-        .judul {
+        .judul h3{
             display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
+            flex-direction: column; 
+            align-items: center; 
             font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 10px;
-            font-style: italic;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: rgb(88, 161, 255);;
         }
         .label {
             font-weight: bold;
-            margin-bottom: 5px; /* Add space between label and value */
+            margin-bottom: 5px; 
         }
         .card {
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px; /* Add padding to the card */
+            padding: 20px; 
+        }
+        .text-center {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
     </style>
 @endsection

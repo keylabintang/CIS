@@ -135,7 +135,7 @@
         <li class="menu-item {{ Request::is('admin/biaya*') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-money"></i>
-                <div data-i18n="SPP">Biaya Bulanan</div>
+                <div data-i18n="SPP">Keuangan</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('admin/biaya') ? 'active' : '' }}">
