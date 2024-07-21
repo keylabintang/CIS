@@ -59,6 +59,10 @@
                                             <i class="bx bx-trash me-1"></i>
                                             Delete
                                         </a>
+                                        <a class="dropdown-item" href="{{ url('/admin/registrasi/create') }}">
+                                            <i class="bx bx-user-plus me-1"></i>
+                                            Create User
+                                        </a>
                                     </div>
                                 </div>
                             </td>

@@ -12,6 +12,19 @@
         </nav>
         <div class="card p-4">
             <h5 class="card-header p-0 mb-4">{{ $judul }}</h5>
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <table id="example" class="table table-hover py-3 " style="width: 100%">
                 <thead>
                     <tr>

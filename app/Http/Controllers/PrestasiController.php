@@ -106,7 +106,6 @@ class PrestasiController extends Controller
             [
                 'nama' => 'required',
                 'keterangan' => 'required',
-                'foto' => 'required',
                 'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp'
             ],
             [

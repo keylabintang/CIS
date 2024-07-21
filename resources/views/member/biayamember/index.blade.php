@@ -118,6 +118,11 @@
         document.getElementById('bukti').addEventListener('change', function() {
             document.getElementById('hilang').style.display = 'none';
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('tanggal').value = today;
+        });
     </script>
 
 <!--view--> 

@@ -10,30 +10,24 @@ use Illuminate\Support\Facades\File;
 
 class BiayaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $judul = "Data Biaya Bulanan";
+        $member = Member::all();
+        $judul = "Data Laporan Bulanan";
         $data = Biaya::orderBy('id_biaya', 'asc')->get();
 
-        return view('admin.biaya.index', compact('judul', 'data'));
+        return view('admin.biaya.index', compact('judul', 'data', 'member'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $judul = "Tambah Data Biaya Bulanan";
+        $judul = "Tambah Data biaya Bulanan";
+        $biaya = Biaya::all();
         $member = Member::all();
 
-        return view('admin.biaya.create', compact('judul', 'member'));
+        return view('admin.biaya.create', compact('judul', 'biaya', 'member'));
     }
-    /*
-	 * Store a newly created resource in storage.
-	 */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -56,7 +50,7 @@ class BiayaController extends Controller
             $destinationPath = "images/";
             $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input["bukti"] = "$profileImage";
+            $input["bukti"] = $profileImage;
         }
 
         Biaya::create($input);
@@ -65,17 +59,11 @@ class BiayaController extends Controller
         return redirect('/admin/biaya');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Biaya $biaya)
     {
         // Implementasikan jika diperlukan
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Biaya $biaya)
     {
         $judul = "Edit Data Biaya Bulanan";
@@ -83,59 +71,50 @@ class BiayaController extends Controller
         return view('admin.biaya.edit', compact('biaya', 'judul'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Biaya $biaya)
-{
-    $request->validate([
-        'id_member' => 'required',
-        'tanggal' => 'required',
-        'jenis_pembayaran' => 'required',
-        'keterangan' => 'required',
-        'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
-    ], [
-        'id_member.required' => 'Nama wajib diisi',
-        'tanggal.required' => 'Tanggal wajib diisi',
-        'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
-        'keterangan.required' => 'Keterangan wajib diisi',
-        'bukti.*.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
-    ]);
+    {
+        $request->validate([
+            'id_member' => 'required',
+            'tanggal' => 'required',
+            'jenis_pembayaran' => 'required',
+            'keterangan' => 'required',
+            'bukti.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
+        ], [
+            'id_member.required' => 'Nama wajib diisi',
+            'tanggal.required' => 'Tanggal wajib diisi',
+            'jenis_pembayaran.required' => 'Jenis Pembayaran wajib diisi',
+            'keterangan.required' => 'Keterangan wajib diisi',
+            'bukti.*.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
+        ]);
 
-    $input = $request->all();
+        $input = $request->all();
 
-    $data_biaya = Biaya::find($biaya->id_biaya);
+        $data_biaya = Biaya::find($biaya->id_biaya);
 
-    if ($image = $request->file("bukti")) {
-        // remove old file
-        $path = "images/";
+        if ($image = $request->file("bukti")) {
+            $path = "images/";
 
-        if ($data_biaya->bukti != '' && $data_biaya->bukti != null) {
-            $file_old = $path . $data_biaya->bukti;
-            if (File::exists($file_old)) {
-                File::delete($file_old);
+            if ($data_biaya->bukti != '' && $data_biaya->bukti != null) {
+                $file_old = $path . $data_biaya->bukti;
+                if (File::exists($file_old)) {
+                    File::delete($file_old);
+                }
             }
+
+            $destinationPath = "images/";
+            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input["bukti"] = $profileImage;
+        } else {
+            $input["bukti"] = $data_biaya->bukti;
         }
 
-        // upload new file
-        $destinationPath = "images/";
-        $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
-        $image->move($destinationPath, $profileImage);
-        $input["bukti"] = "$profileImage";
-    } else {
-        // Keep the old image if no new image is uploaded
-        $input["bukti"] = $data_biaya->bukti;
+        $biaya->update($input);
+
+        Alert::success('Data biaya', 'Berhasil diubah!');
+        return redirect('/admin/biaya');
     }
 
-    $biaya->update($input);
-
-    Alert::success('Data biaya', 'Berhasil diubah!');
-    return redirect('/admin/biaya');
-}
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Biaya $biaya)
     {
         $path = "images/";
