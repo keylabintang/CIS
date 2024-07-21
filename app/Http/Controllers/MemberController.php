@@ -113,60 +113,61 @@ class MemberController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Member $member)
-    {
-        $request->validate([
-            'nama_anak' => 'required',
-            'jenis_kelamin' => 'required',
-            'tanggal_lahir' => 'required',
-            'nama_ortu' => 'required',
-            'wa_ortu' => 'required',
-            'alamat' => 'required',
-            'level' => 'required',
-            'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
-        ], [
-            'nama_anak.required' => 'Nama anak harus diisi',
-            'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
-            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
-            'nama_ortu.required' => 'Nama orang tua harus diisi',
-            'wa_ortu.required' => 'Nomor wa orang tua harus diisi',
-            'alamat.required' => 'Alamat harus diisi',
-            'level.required' => 'Level harus diisi',
-            'foto.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
-        ]);
+{
+    $request->validate([
+        'nama_anak' => 'required',
+        'jenis_kelamin' => 'required',
+        'tanggal_lahir' => 'required',
+        'nama_ortu' => 'required',
+        'wa_ortu' => 'required',
+        'alamat' => 'required',
+        'level' => 'required',
+        'foto.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
+    ], [
+        'nama_anak.required' => 'Nama anak harus diisi',
+        'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
+        'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
+        'nama_ortu.required' => 'Nama orang tua harus diisi',
+        'wa_ortu.required' => 'Nomor wa orang tua harus diisi',
+        'alamat.required' => 'Alamat harus diisi',
+        'level.required' => 'Level harus diisi',
+        'foto.image' => 'File foto harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
+    ]);
 
-        $input = $request->all();
+    $input = $request->all();
 
-        $data_member = Member::find($member->id_member);
+    // Perbarui umur berdasarkan tanggal lahir yang baru
+    $input['umur'] = $this->hitungUmur($input['tanggal_lahir']);
 
-        if ($image = $request->file("foto")) {
-            // remove old file
-            $path = "images/";
+    $data_member = Member::find($member->id_member);
 
-            if ($data_member->foto != ''  && $data_member->foto != null) {
-                $file_old = $path . $data_member->foto;
-                unlink($file_old);
+    if ($image = $request->file("foto")) {
+        // Hapus file lama jika ada
+        $path = "images/";
+
+        if ($data_member->foto != '' && $data_member->foto != null) {
+            $file_old = $path . $data_member->foto;
+            if (File::exists(public_path($file_old))) {
+                File::delete(public_path($file_old));
             }
-
-            // upload new file
-            $destinationPath = "images/";
-            $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input["foto"] = "$profileImage";
-        } else {
-            unset($input["foto"]);
         }
 
-        $member['umur'] = $this->hitungUmur($member['tanggal_lahir']);
-
-        $member->update($input);
-
-        Alert::success('Data Member', 'Berhasil diubah!');
-        return redirect('/admin/member');
+        // Unggah file baru
+        $destinationPath = "images/";
+        $profileImage = date("YmdHis") . "." . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $profileImage);
+        $input["foto"] = $profileImage;
+    } else {
+        unset($input["foto"]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    $member->update($input);
+
+    Alert::success('Data Member', 'Berhasil diubah!');
+    return redirect('/admin/member');
+}
+
+
     public function destroy(Member $member)
     {
         File::delete(public_path('images/' . $member->foto)); // Hapus foto dari server

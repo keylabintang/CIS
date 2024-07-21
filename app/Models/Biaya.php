@@ -18,13 +18,10 @@ class Biaya extends Model
     protected $guarded = [];
 
     public function member()
-    {
-        return $this->hasOne(Member::class, 'id_member');
-    }
+{
+    return $this->belongsTo(Member::class, 'id_member');
+}
     
     // Member.php
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+   
 }
