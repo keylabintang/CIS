@@ -50,7 +50,7 @@ class PendaftaranMemberController extends Controller
         // Simpan data pendaftaran
         Pendaftaran::create($input);
 
-        return redirect('/')->with('success', 'Pendaftaran sukses!');
+        return redirect()->back()->with('success', 'Pendaftaran berhasil dilakukan.');
     }
 
     public function show(Pendaftaran $id_pendaftaran)

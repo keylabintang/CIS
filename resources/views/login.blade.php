@@ -56,6 +56,34 @@
         .login:hover {
             background-color: #0056b3;
         }
+        .back-button {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.back-button a {
+    color: #fff;
+    text-decoration: none;
+}
+    
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+.back-button:focus {
+    outline: none;
+}
+        
     </style>
 </head>
 
@@ -89,6 +117,9 @@
             </div>
         </div>
         <button type="submit" class="login">Login</button>
+        <button class="back-button">
+            <a href="{{ url('/') }}">Kembali</a>
+        </button>
         </form>
     </div>
     <!-- partial -->
