@@ -7,6 +7,7 @@ use DateTime;
 use Carbon\Carbon;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PendaftaranController extends Controller
 {
@@ -28,7 +29,6 @@ class PendaftaranController extends Controller
     {
         //
     }
-
 
     private function hitungUmur($tanggal_lahir)
     {
@@ -74,15 +74,16 @@ class PendaftaranController extends Controller
 
     private function uploadFoto($foto)
     {
-        // Logika untuk menyimpan foto dan mengembalikan path atau nama file foto
-        // Misalnya:
-        $nama_file = $foto->getClientOriginalName();
-        $path = $foto->storeAs('public/foto', $nama_file); // Menyimpan foto ke dalam storage
+        if ($foto) {
+            // Logika untuk menyimpan foto dan mengembalikan path atau nama file foto
+            $nama_file = time() . '_' . $foto->getClientOriginalName();
+            $path = $foto->storeAs('public/foto', $nama_file); // Menyimpan foto ke dalam storage
 
-        return $path; // Mengembalikan path file foto yang disimpan
+            return $path; // Mengembalikan path file foto yang disimpan
+        }
+
+        return null;
     }
-
-
 
     public function reject(Pendaftaran $pendaftaran)
     {

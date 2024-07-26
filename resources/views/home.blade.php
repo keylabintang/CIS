@@ -576,7 +576,7 @@
               <span> Sosial Media </span>
               <ul>
                 <li>
-                  <a href="#">
+                  <a href="https://www.instagram.com/sepaturodacirebon/">
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" x="0" y="0" viewBox="0 0 60 60" style="enable-background: new 0 0 512 512" xml:space="preserve" class="">
                       <g>
                         <path d="M30 20.83c-5.06 0-9.17 4.11-9.17 9.17s4.11 9.18 9.17 9.18 9.18-4.12 9.18-9.18-4.12-9.17-9.18-9.17z" fill="#ffffff" opacity="1" data-original="#000000" class=""></path>
@@ -586,12 +586,12 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#"
-                    ><svg xmlns="http://www.w3.org/2000/svg" width="15px" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z" fill="#fff" /></svg>
+                  <a href="#">
+                  <i class="fa fa-whatsapp" style="font-size:20px"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="#"
+                  <a href="https://www.youtube.com/@sepaturodacirebon8330"
                     ><svg xmlns="http://www.w3.org/2000/svg" width="17px" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" fill="#fff" /></svg>
                   </a>
                 </li>
@@ -624,7 +624,7 @@
               <p class="mt-1">Omet – 087732776450</p>
               <p>Vega – 08973310019</p>
               <div class="main-blue-button mt-3">
-                <a href="#login">Daftar Sekarang!</a>
+                <a href="/pendaftaranMember ">Daftar Sekarang!</a>
               </div>
             </div>
           </div>
