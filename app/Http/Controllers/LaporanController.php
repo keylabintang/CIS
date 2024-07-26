@@ -35,7 +35,6 @@ class LaporanController extends Controller
     public function store(Request $request)
     {
 
-
         $request->validate([
             'id_member' => 'required',
             'bulan' => 'required',

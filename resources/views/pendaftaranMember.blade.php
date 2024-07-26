@@ -8,6 +8,7 @@
   <meta name="description" content="" />
   <link rel="icon" type="image/x-icon" href="{{ asset('assets_admin/img/logo/logo-tab.png') }}" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
@@ -152,13 +153,16 @@
 <body>
   <div class="container">
     @if (session('success'))
-    <div class="alert alert-success">
-      {{ session('success') }}
-    </div>
-    <script>
-      alert("Pendaftaran Sukses");
-    </script>
-  @endif
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        Swal.fire({
+          title: 'Sukses!',
+          text: `{{ session('success') }}`,
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+      </script>
+    @endif
     <form action="{{ route('pendaftaranMember.store') }}" method="POST" enctype="multipart/form-data" class="signup-form-container">
       @csrf
       <h2 class="big-heading">Pendaftaran Member Baru</h2>
@@ -239,9 +243,9 @@
       </div>
 
       <div class="text-fields">
-        <label for="wa_ortu"><i class="bx bx-phone"></i> Nomor WA Orang Tua</label>
-        <input type="number" class="form-control @error('wa_ortu') border-danger @enderror"
-              id="wa_ortu" name="wa_ortu" value="{{ old('wa_ortu') }}" placeholder="Masukkan Nomor WA Orang Tua" />
+        <label for="wa_ortu"><i class="bx bx-phone"></i> WhatsApp Orang Tua</label>
+        <input type="text" class="form-control @error('wa_ortu') border-danger @enderror"
+              id="wa_ortu" name="wa_ortu" value="{{ old('wa_ortu') }}" placeholder="Masukkan Nomor WhatsApp" />
           @error('wa_ortu')
           <div class="form-text text-danger">
             *{{ $message }}
@@ -252,7 +256,7 @@
       <div class="text-fields">
         <label for="ig_ortu"><i class="bx bxl-instagram"></i> Instagram Orang Tua</label>
         <input type="text" class="form-control @error('ig_ortu') border-danger @enderror"
-              id="ig_ortu" name="ig_ortu" value="{{ old('ig_ortu') }}" placeholder="Masukkan Instagram Orang Tua" />
+              id="ig_ortu" name="ig_ortu" value="{{ old('ig_ortu') }}" placeholder="Contoh @instagram_ortu" />
           @error('ig_ortu')
           <div class="form-text text-danger">
             *{{ $message }}
@@ -262,47 +266,63 @@
 
       <div class="text-fields">
         <label for="alamat"><i class="bx bx-map"></i> Alamat</label>
-        <textarea class="form-control @error('alamat') border-danger @enderror" id="alamat" name="alamat" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
-          @error('alamat')
-          <div class="form-text text-danger">
-            *{{ $message }}
-          </div>
-          @enderror
+        <textarea class="form-control @error('alamat') border-danger @enderror" 
+                  id="alamat" name="alamat" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
+        @error('alamat')
+        <div class="form-text text-danger">
+          *{{ $message }}
+        </div>
+        @enderror
       </div>
 
       <div class="text-fields">
-        <label for="level"><i class="bx bx-map"></i> Level</label>
-        <select class="form-select @error('level') border-danger @enderror" id="level" name="level">
-              <option value="0" hidden disabled selected>Silahkan Pilih Level</option>
-              <option value="Warior" {{ old('level') == 'Warior' ? 'selected' : '' }}>Warrior - Pemula</option>
-              <option value="Elite" {{ old('level') == 'Elite' ? 'selected' : '' }}>Elite - Intermediate</option>
-            </select>
-          @error('level')
-          <div class="form-text text-danger">
-            *{{ $message }}
-          </div>
-          @enderror
-      </div>
-
-      <div class="fee-info">
-        <h4>Biaya Pendaftaran Rp. 200.000</h4>
-        <p>Dibayarkan Melalui Rekening BCA 1342357282<br>Atas Nama Cirebon Inline Skate</p>
+        <label for="level"><i class="bx bx-level"></i> Level</label>
+        <select class="form-control @error('level') border-danger @enderror"
+                id="level" name="level">
+          <option value="">Pilih Level</option>
+          <option value="Beginner" {{ old('level') == 'Beginner' ? 'selected' : '' }}>Beginner</option>
+          <option value="Intermediate" {{ old('level') == 'Intermediate' ? 'selected' : '' }}>Intermediate</option>
+          <option value="Advanced" {{ old('level') == 'Advanced' ? 'selected' : '' }}>Advanced</option>
+        </select>
+        @error('level')
+        <div class="form-text text-danger">
+          *{{ $message }}
+        </div>
+        @enderror
       </div>
 
       <div class="text-fields">
-        <label for="bukti_pembayaran"><i class="bx bx-upload"></i> Upload Bukti Pembayaran</label>
-        <input type="file" id="bukti_pembayaran" class="form-control @error('bukti_pembayaran') border-danger @enderror" name="bukti_pembayaran" value="{{ old('bukti_pembayaran') }}" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
-          @error('bukti_pembayaran')
-          <div class="form-text text-danger">
-            *{{ $message }}
-          </div>
-          @enderror
+        <label for="bukti_pembayaran"><i class="bx bx-image"></i> Bukti Pembayaran</label>
+        <input type="file" class="form-control @error('bukti_pembayaran') border-danger @enderror"
+              id="bukti_pembayaran" name="bukti_pembayaran" />
+        @error('bukti_pembayaran')
+        <div class="form-text text-danger">
+          *{{ $message }}
+        </div>
+        @enderror
       </div>
-      <div class="button-container">
-        <button type="submit" class="submit-btn">Daftar</button>
-      </div>
-      </div>
+
+      <button type="submit" class="submit-btn">Daftar</button>
     </form>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+@if (session('success'))
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      Swal.fire({
+        title: 'Sukses!',
+        text: `{{ session('success') }}`,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Arahkan ke halaman utama
+          window.location.href = '{{ url('/') }}'; // Ganti dengan route atau URL halaman awal Anda
+        }
+      });
+    });
+  </script>
+@endif
 </body>
 </html>
